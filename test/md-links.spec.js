@@ -1,5 +1,4 @@
-const mdLinks = require('../');
-
+import { mdLinks } from '../util.mjs';
 
 describe('mdLinks', () => {
 
