@@ -1,5 +1,6 @@
 /* ESM script example */
-import {readdirSync, readFileSync } from 'fs';
+import { count } from 'console';
+import {readdirSync, readFileSync, stat } from 'fs';
 
 const readDir = (path) => {return readdirSync(path)}
 const readFile = (path) =>{return readFileSync(path).toString('utf8')}
@@ -8,4 +9,5 @@ const readFile = (path) =>{return readFileSync(path).toString('utf8')}
 
 
  export{ readDir, readFile };
+
 

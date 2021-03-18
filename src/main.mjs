@@ -14,9 +14,9 @@ const ruta = /* dirnameFunction + '/archivo.md' */ /* '../practica' */ '../pract
     if (statsPath.isDirectory()) {
         let data = readDir(AbsolutePath)
             for (const type of data) {
-                readPath(AbsolutePath + `/${type}`)
+                readPath(AbsolutePath + `/${type}` )
             }}
-    else if(parse(AbsolutePath).ext == '.md'){
+    else if(parse(AbsolutePath).ext == '.md'){ //modulos
                 console.log(readFile(AbsolutePath))}}
 
 readPath(ruta)

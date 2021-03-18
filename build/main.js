@@ -8,19 +8,16 @@ var _url = require("url");
 
 var _util = require("./util");
 
-var _markdownIt = _interopRequireDefault(require("markdown-it"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* ESM script example */
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
-//funcion recibe path
 const ruta =
 /* dirnameFunction + '/archivo.md' */
 
 /* '../practica' */
-'../src';
+'../practica';
 
 function readPath(ruta) {
   const AbsolutePath = (0, _path.isAbsolute)(ruta) ? ruta : (0, _path.resolve)(ruta); // convertir a absoluta
@@ -28,17 +25,14 @@ function readPath(ruta) {
   let statsPath = (0, fs.lstatSync)(AbsolutePath); //
 
   if (statsPath.isDirectory()) {
-    (0, _util.readDir)(ruta).then(data => {
-      for (const type of data) {
-        readPath(AbsolutePath + `/${type}`);
-      }
-    });
-  } else if ((0, _path.parse)(ruta).ext == '.md') {
-    (0, _util.readFile)(ruta).then(hola =>
-    /* if(MarkdownIt.areThereL(hola)){
-        const fileLink = MarkdownIt
-    }  */
-    console.log(hola.toString('utf8')));
+    let data = (0, _util.readDir)(AbsolutePath);
+
+    for (const type of data) {
+      readPath(AbsolutePath + `/${type}`);
+    }
+  } else if ((0, _path.parse)(AbsolutePath).ext == '.md') {
+    //modulos
+    console.log((0, _util.readFile)(AbsolutePath));
   }
 }
 

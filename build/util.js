@@ -5,32 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.readFile = exports.readDir = void 0;
 
-var fs = _interopRequireDefault(require("fs"));
+var _console = require("console");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _fs = require("fs");
 
 /* ESM script example */
-
-/* const fs = require('fs'); */
-// reading folder
 const readDir = path => {
-  return new Promise((resolve, reject) => {
-    fs.readdirSync(path, (err, data) => {
-      resolve(data);
-    });
-  });
+  return (0, _fs.readdirSync)(path);
 };
 
 exports.readDir = readDir;
 
 const readFile = path => {
-  return new Promise((resolve, reject) => {
-    fs.readFileSync(path, (err, data) => {
-      /* if(err) throw err;
-      console.error("already") */
-      resolve(data);
-    });
-  });
+  return (0, _fs.readFileSync)(path).toString('utf8');
 };
 
 exports.readFile = readFile;
