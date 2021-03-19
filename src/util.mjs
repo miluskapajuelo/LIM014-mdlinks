@@ -13,6 +13,7 @@ const readFile = (path) =>{return readFileSync(path).toString('utf8')}
 
 
 
+
  export{ readDir, readFile, itExtist, PathDirectory,convertPath };
 
 
