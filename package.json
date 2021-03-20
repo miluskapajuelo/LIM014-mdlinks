@@ -1,5 +1,5 @@
 {
-  "name": "@miluskapajuelo/md-links",
+  "name": "miluskapajuelov",
   "version": "0.1.0",
   "description": "Project: Create a function to read md files and get URLs and can use --validate, --stats",
   "main": "src/main.mjs",
@@ -63,6 +63,7 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "markdown-it": "^12.0.4"
+    "markdown-it": "^12.0.4",
+    "node-fetch": "^2.6.1"
   }
 }

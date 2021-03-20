@@ -3,6 +3,7 @@ import { rejects } from 'assert'
 import { dirname, extname } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
 import { readDir, readFile, itExtist, PathDirectory,convertPath } from './util.mjs'
+import {stat, readdir, Stats} from 'fs'
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 const cwd = pathToFileURL(`${process.cwd()}/`).href
@@ -11,46 +12,44 @@ const regexLinkFull = /\[[a-zA-Z0-9-.]+\](www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-z
 const regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
 let array = []
 
-function mdLinks(ruta){
-  /* return new Promise((resolve, reject)=>{ */
-    let path = convertPath(ruta)
-    if(itExtist(path)){
-        if (PathDirectory(path)) {
-          let data = readDir(path)
-          for (const type of data) {
-            mdLinks(path + `/${type}`)}}
-        else if(extname(ruta) == '.md'){ //parse(AbsolutePath).ext
-          let text = readFile(path).match(regexLinkFull)
-          for (let link of text) {
-              let href = link.match(regexLink)
-              array.push({
-                'href':href[1],
-                'text': href[0],
-                'file': ruta
-              })}console.log(array)
-            }
-          }
+const mdLinks = function(ruta) {
+      let path = convertPath(ruta)
+      stat(path, function(err, stat) {
+        if(err == null) {
+          if (PathDirectory(path)) {
+            readdir(path, (err, files) => {
+              if (err){
+                return("no hay información aquí")} //no funciona
+              else {
+                files.forEach(file => {
+                  mdLinks(path + `/${file}`)
+                })
+              }
+            })}
+          else if(extname(ruta) == '.md'){
 
+            let text = readFile(ruta).match(regexLinkFull)
 
-    else{"no existe la ruta"}}
+            if(text){
+            for (let link of text) {
+                let href = link.match(regexLink)
+                array.push({
+                  'href':href[1],
+                  'text': href[0],
+                  'file': path
+                })};
+                console.log(array)
+                return array
 
-mdLinks(ruta)
+              }}}
+        else if(err.code === 'ENOENT') {
+            // file does not exist
+            return ('La ruta no existe');
+        }
+       /*  else {
+          return ('Some other error: ', err.code);
+        } */
+    })}
 
- /*  mdLinks(ruta).then(links => {console.log(mdLinks(links))}).catch(error =>{console.log(error)}) */
+ mdLinks(ruta)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  */
