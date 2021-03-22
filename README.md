@@ -156,9 +156,11 @@ Para la realización del API utilicé ECMA script module, comparto dependencias 
 
 #### 5.2. Planificación:
 `5.2.1. Diagrama de flujo API`
-<a href="https://ibb.co/HxRkhSj"><img src="https://i.ibb.co/YyJq0Cx/MDLINKS-API-1.png" alt="MDLINKS-API-1" border="0"></a>
+
+<a href="https://ibb.co/fM8wvdW"><img src="https://i.ibb.co/PxTHQGy/MDLINKS-API.png" alt="MDLINKS-API" border="0"></a>
 
 `5.2.2. Diagrama de flujo CLI`
+
 <a href="https://ibb.co/M1Vgy3v"><img src="https://i.ibb.co/dp2fszT/MDLINKS-CLI.png" alt="MDLINKS-CLI" border="0"></a>
 
 ### Archivos del proyecto
