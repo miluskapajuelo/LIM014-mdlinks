@@ -32,18 +32,10 @@ algunas estadísticas.
 
 ## 2. Resumen del proyecto
 
-[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
-construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
-Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
-ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder
-interactuar con el sistema en sí, archivos, redes, ...
+Se creó un programa que se ejecuta usando Node.js, donde se evaluan rutas, archivos, extensiones(solo de .md), obtención de links, manejo de errores y por último las opciones para obtención de datos como el total de links, links rotos, links únicos.
 
-En este proyecto nos alejamos un poco del navegador para construir un programa
-que se ejecute usando Node.js, donde aprenderemos sobre cómo interactuar con el
-sistema archivos, con el entorno (_proceso_, _env_, _stdin/stdout/stderr_), ...
+Esto se ejecutará con una herramienta de línea de comando (CLI) y librería (o biblioteca - library) en JavaScript.
 
-En este proyecto crearás una herramienta de línea de comando (CLI) así como tu
-propia librería (o biblioteca - library) en JavaScript.
 
 ## 3. Descripción del módulo
 
@@ -110,26 +102,52 @@ A continuación puedes ver los objetivos de aprendizaje de este proyecto:
 
 ## 4. Instrucciones de instalación/uso
 
-* Este proyecto se debe "resolver" de manera individual.
+#### Instalación
+* Con el comando `npm i miluskapajuelov/md-links` podemos instalar directamente.
+Con el comando `npm i @carolgmonteiro/md-links` podemos instalar directamente.
 
-* La **librería** y el **script ejecutable** (herramienta de línea de comando -
-  CLI) deben estar implementados en JavaScript para ser ejecutados con
-  Node.js. **Está permitido usar librerías externas**.
+#### Uso
 
-* Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
-  módulo debe incluir tanto un _ejecutable_ que podamos invocar en la línea de
-  comando como una interfaz que podamos importar con `require` para usarlo
-  programáticamente.
+En el archivo de Javascript:
 
-* Los **tests unitarios** deben cubrir un mínimo del 70% de _statements_,
-  _functions_, _lines_ y _branches_. Te recomendamos explorar [Jest](https://jestjs.io/)
-  para tus pruebas unitarias.
+```mjs
 
-* Para este proyecto **no está permitido** utilizar `async/await`.
+import md-links from 'mdlinks'
+```
+---
+**Cómo llamar a libreria desde la terminal:**
+- Para path-to-file
 
-* Para este proyecto es **opcional** el uso de ES Modules `(import/export)`, en el
-  caso optes utilizarlo deberás de crear un script de `build` en el `package.json`
-  que los transforme en `requires` y `module.exports` con ayuda de **babel**.
+```
+md-links <"path-to-directory"> [options]
+```
+---
+
+**CLI (Command Line Interface)**
+La libreria hace las seguientes entregas, dependiendo de los que ingrese el usuario.
+
+**1.**  No ingresa ninguna OPTION, por lo tanto solo se muestran los links obtenidos en un array de objetos con las propidades HREF, TEXT, FILE.
+
+**2.**  elIge la opción --validate, entonces nos devuleve el status del link en la red, con la siguiente estructura ( HREF, FILE, STATUS, TEXT ESTATUS, TEXT)
+
+**3.**  elIge la opción --stats, entonces se mostrarán datos estadísticos como (TOTAL, UNIQUE)
+**4.** elige la opción --validate && --stats, entonces se mostraran datos estadísticos similares pero se le agregan los links rotos, la estructura es (TOTAL, UNIQUE, BROKEN)
+
+**PATH**
+- Leer archivos con extensión .md `md-links <file.md>`
+
+<!-- imagen -->
+- Leer un directorio  `md-links <"path-to-directory">`
+
+<!-- imagen -->
+
+En ambos casos, se obtiene como resultado:
+
+- `file`: archivo o ruta donde fue encontrado el link.
+- `text`: descripción del link.
+- `href`: link encontrado.
+
+
 
 ## 5. Documentación técnica
 Para la realización del API utilicé ECMA script module, comparto dependencias instaladas.
@@ -162,6 +180,12 @@ Para la realización del API utilicé ECMA script module, comparto dependencias 
 `5.2.2. Diagrama de flujo CLI`
 
 <a href="https://ibb.co/M1Vgy3v"><img src="https://i.ibb.co/dp2fszT/MDLINKS-CLI.png" alt="MDLINKS-CLI" border="0"></a>
+
+`5.2.3. Github projects`
+El tablero se muestra en el siguiente link: [aquí](https://github.com/miluskapajuelo/LIM014-mdlinks/projects/1)
+Para un correcto seguimento del proyecto se crearon MILESTONES (por sprints) donde se visualizan los avances e ISSUES (tareas) distribuidas por HU(historias de usuario) en TAGS(etiquetas).
+
+<a href="https://ibb.co/ykrcK56"><img src="https://i.ibb.co/hdSJrHB/github.png" alt="github" border="0"></a>
 
 ### Archivos del proyecto
 
@@ -418,5 +442,10 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
 * [ ] Pasa tests (y linters) (`npm test`).
+
+## Autora
+[Jhoselyn Miluska Pajuelo Villanueva](https://github.com/miluskapajuelo/)
+Software Developer
+
 
 
