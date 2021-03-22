@@ -104,7 +104,6 @@ A continuación puedes ver los objetivos de aprendizaje de este proyecto:
 
 #### Instalación
 * Con el comando `npm i miluskapajuelov/md-links` podemos instalar directamente.
-Con el comando `npm i @carolgmonteiro/md-links` podemos instalar directamente.
 
 #### Uso
 
