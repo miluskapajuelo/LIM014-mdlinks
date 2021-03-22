@@ -3,11 +3,14 @@
 ## Índice
 
 * [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-Resumen-del-proyecto)
-* [3. Descripción del módulo](#3-descripción-del-módulo)
-* [4. Instrucciones de instalación/uso](#4-Instrucciones-de-instalación/uso)
-* [5. Documentación técnica](#5-documentación-técnica)
-
+* [2. Descripción del módulo](#2-resumen-del-proyecto)
+* [3. Instrucciones de instalación/uso](#3-objetivos-de-aprendizaje)
+* [4. Documentación del API](#4-consideraciones-generales)
+* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+* [6. Entregables](#6-entregables)
+* [7. Hacker edition](#7-hacker-edition)
+* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
+* [9. Checklist](#9-checklist)
 
 ***
 
@@ -45,7 +48,7 @@ sistema archivos, con el entorno (_proceso_, _env_, _stdin/stdout/stderr_), ...
 En este proyecto crearás una herramienta de línea de comando (CLI) así como tu
 propia librería (o biblioteca - library) en JavaScript.
 
-## 3. Descripción del módulo
+## 3. Objetivos de aprendizaje
 
 Diseñar tu propia librería es una experiencia fundamental para cualquier
 desarrollador porque que te obliga a pensar en la interfaz (API) de tus
@@ -108,7 +111,7 @@ A continuación puedes ver los objetivos de aprendizaje de este proyecto:
 
 ***
 
-## 4. Instrucciones de instalación/uso
+## 4. Consideraciones generales
 
 * Este proyecto se debe "resolver" de manera individual.
 
@@ -131,35 +134,18 @@ A continuación puedes ver los objetivos de aprendizaje de este proyecto:
   caso optes utilizarlo deberás de crear un script de `build` en el `package.json`
   que los transforme en `requires` y `module.exports` con ayuda de **babel**.
 
-## 5. Documentación técnica
-Para la realización del API utilicé ECMA script module, comparto dependencias instaladas.
+## 5. Criterios de aceptación mínimos del proyecto
 
-#### 5.1. Dependencias Instaladas:
+Para comenzar este proyecto tendrás que hacer un **_fork_** y **_clonar_** este
+repositorio.
 
-* "@babel/cli": "^7.13.10",
-* "@babel/core": "^7.13.10",
-* "@babel/node": "^7.13.10",
-* "@babel/plugin-transform-modules-commonjs": "^7.13.8",
-* "@babel/preset-env": "^7.13.10",
-* "@babel/runtime": "^7.13.10",
-* "babel-core": "^7.0.0-bridge.0",
-* "babel-jest": "^26.6.3",
-* "babel-plugin-add-module-exports": "^1.0.4",
-* "eslint": "^7.22.0",
-* "eslint-config-airbnb-base": "^14.2.1",
-* "eslint-config-prettier": "^8.1.0",
-* "eslint-plugin-import": "^2.22.1",
-* "eslint-plugin-prettier": "^3.3.1",
-* "jest": "^26.6.3",
-* "microbundle": "^0.13.0",
-* "prettier": "^2.2.1",
+Antes de comenzar a codear, es necesario crear un **plan de acción**. Esto debería
+quedar detallado en el `README.md` de tu repo y en una serie de **_issues_**
+y **_milestones_** para priorizar y organizar el trabajo, y para poder hacer
+seguimiento de tu progreso.
 
-#### 5.2. Planificación:
-`5.2.1. Diagrama de flujo API`
-<a href="https://ibb.co/HxRkhSj"><img src="https://i.ibb.co/YyJq0Cx/MDLINKS-API-1.png" alt="MDLINKS-API-1" border="0"></a>
-
-`5.2.2. Diagrama de flujo CLI`
-<a href="https://ibb.co/M1Vgy3v"><img src="https://i.ibb.co/dp2fszT/MDLINKS-CLI.png" alt="MDLINKS-CLI" border="0"></a>
+Dentro de cada **_milestone_** se crearán y asignarán los **_issues_** que cada quien
+considere necesarios.
 
 ### Archivos del proyecto
 
@@ -416,5 +402,3 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
 * [ ] Pasa tests (y linters) (`npm test`).
-
-
