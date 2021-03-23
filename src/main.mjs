@@ -1,55 +1,59 @@
 /* ESM script example */
 import { rejects } from 'assert'
-import { dirname, extname } from 'path'
+import { dirname, extname  } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
-import { readDir, readFile, itExtist, PathDirectory,convertPath } from './util.mjs'
-import {stat, readdir, Stats} from 'fs'
+import {
+    readFile,
+    PathDirectory,
+    convertPath,
+    getText,
+} from './util.mjs'
+import { readdir,statSync } from 'fs'
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 const cwd = pathToFileURL(`${process.cwd()}/`).href
-const ruta = '../src' // dirnameFunction + '/archivo.md'
+// dirnameFunction + '/archivo.md'
 const regexLinkFull = /\[[a-zA-Z0-9-.]+\](www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
-const regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
-let array = []
 
-const mdLinks = function(ruta) {
-      let path = convertPath(ruta)
-      stat(path, function(err, stat) {
-        if(err == null) {
-          if (PathDirectory(path)) {
-            readdir(path, (err, files) => {
-              if (err){
-                return("no hay información aquí")} //no funciona
-              else {
-                files.forEach(file => {
-                  mdLinks(path + `/${file}`)
+
+
+function rutas(path){
+  let array=[];
+  let ruta = convertPath(path)
+  statSync(ruta)
+    if (PathDirectory(ruta)) {
+        readdir(ruta, (err, files) => {
+            if (files.length == 0) {
+                return 'no hay información aquí'
+            }
+            else {
+                files.forEach((file) => {
+                    rutas(ruta + `/${file}`)
                 })
+            }
+        })
+    }
+
+    if (extname(ruta).toLowerCase() == '.md') {
+      let text = regexLinkFull.exec(readFile(ruta))
+      if(text !== null){
+        let href = getText(...text)
+        let Data = {'href': href[1],'text': href[0].substring(0, 50),'file': path};
+        array.push(Data)
+        return array}
+
               }
-            })}
-          else if(extname(ruta) == '.md'){
 
-            let text = readFile(ruta).match(regexLinkFull)
+            }
+const ruta = '../practica'
+console.log(rutas(ruta))
 
-            if(text){
-            for (let link of text) {
-                let href = link.match(regexLink)
-                array.push({
-                  'href':href[1],
-                  'text': href[0],
-                  'file': path
-                })};
-                console.log(array)
-                return array
 
-              }}}
-        else if(err.code === 'ENOENT') {
-            // file does not exist
-            return ('La ruta no existe');
-        }
-       /*  else {
-          return ('Some other error: ', err.code);
-        } */
-    })}
+/* console.log(rutas(ruta)); */
 
- mdLinks(ruta)
+/* const mdLinks = function (ruta) {
+    let path = convertPath(ruta)
+          rutas(path)}
 
+mdLinks(ruta)
+ */

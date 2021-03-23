@@ -18,7 +18,7 @@ const theSame = () =>{
   for (let i=0; i < info.length;i++){
       console.log(info[i].file.slice(35), info[i].href, info[i].text)
 }}
-// theSame()
+//theSame()
 
 const validate = () =>{
   for (let i=0; i < info.length;i++){
@@ -39,8 +39,7 @@ const validate = () =>{
 
 //super fija 200-299
 
-
-//validate()
+validate()
 
 const stat = () =>{
   let array = []
@@ -53,6 +52,7 @@ const stat = () =>{
       result = [...dataArray]
 }
 console.log('Unique: ' + result.length)
-console.log('Broken: ' + info.length)}
+console.log('Total: ' + info.length)}
 
-stat()
+//stat()
+

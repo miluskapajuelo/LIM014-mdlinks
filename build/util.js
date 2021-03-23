@@ -43,5 +43,8 @@ exports.readDir = readDir;
 var readFile = function readFile(path) {
   return (0, _fs.readFileSync)(path).toString('utf8');
 };
+/*
+const readFile = (path) => readFileSync(path).toString('utf8') */
+
 
 exports.readFile = readFile;
