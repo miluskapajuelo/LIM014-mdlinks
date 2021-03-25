@@ -1,46 +1,14 @@
-import { response } from 'express';
-import fetch from 'node-fetch';
+import mdLinks from './main.mjs'
+
 
 const ruta = '../src'
-const info = [
-  {
-    href: 'http://www.google.com.pe/',
-    text: 'google',
-    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md'
-  },
-  {
-    href: 'http://www.google.com.pe/',
-    text: 'google',
-    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md'
-  }]
+mdLinks(ruta,{validate:true})
+    .then(element => Promise.all(element))
+    .then(result => console.log(result))
+    .catch((err) => console.log(err))
 
-const theSame = () =>{
-  for (let i=0; i < info.length;i++){
-      console.log(info[i].file.slice(35), info[i].href, info[i].text)
-}}
-//theSame()
 
-const validate = () =>{
-  for (let i=0; i < info.length;i++){
-    function checkResponseStatus(res) {
-      if(res.ok){
-           console.log(info[i].file.slice(35), info[i].href, res.status + " " +res.statusText, info[i].text)
-       } else {
-            throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-       }
-    }
-
-    fetch(info[i].href)
-        .then(checkResponseStatus)
-        .catch((error) => {
-          if (error instanceof Error) {console.log(`HTTP ${error.status} ${error.statusText}`)}})
-
-}}
-
-//super fija 200-299
-
-validate()
-
+/*
 const stat = () =>{
   let array = []
   let result
@@ -53,6 +21,6 @@ const stat = () =>{
 }
 console.log('Unique: ' + result.length)
 console.log('Total: ' + info.length)}
+ */
 
-//stat()
 
