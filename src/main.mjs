@@ -11,19 +11,22 @@ import chalk from 'chalk'
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 const cwd = pathToFileURL(`${process.cwd()}/`).href
 // dirnameFunction + '/archivo.md'
-let infoLinks
+let statusLinksFiles;
 const validate = (info) =>{
 /*   console.log(info) */
   return new Promise((resolve, reject)=>{
-    infoLinks = info.map(link => {
-      return fetch(link.href).then(res => {
-      if (res.ok) console.log({'file': link.file, 'href':link.href, 'status': res.status, 'statusText':res.statusText, 'text':link.text})
-      else {throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+    statusLinksFiles = info.map(link => {return fetch(link.href).then(res => {
+      if(res.ok){
+        let statusLink = {'file': link.file, 'href':link.href, 'status': res.status, 'statusText':res.statusText, 'text':link.text}
+        console.log(statusLink)
+
+    } else {
+         throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
     }
  })})})}
 
- Promise.all(infoLinks)
- .then(res => {resolve(info)}) //{resolve(info)}
+ Promise.all(statusLinksFiles)
+ .then(res => res) //{resolve(info)}
  .catch((error) => {if (error instanceof Error){`HTTP ${error.status} ${error.statusText}`}})
 
 /* function noOption(hola) {
