@@ -6,31 +6,25 @@ import { reader, Finder, itExist, convertPath } from './util.mjs'
 import { readdirSync, statSync } from 'fs'
 import { response } from 'express';
 import fetch from 'node-fetch';
+import chalk from 'chalk'
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 const cwd = pathToFileURL(`${process.cwd()}/`).href
 // dirnameFunction + '/archivo.md'
-
+let infoLinks
 const validate = (info) =>{
-  let array = [];
-  for (let i=0; i < info.length;i++){
-    function statu(res) {
-      if(res.ok){
-           let statusLink = {'file': info[i].file.slice(35), 'href':info[i].href, 'status': res.status, 'statusText':res.statusText, 'text':info[i].text}
-           return statusLink
-       } else {
-            throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-       }
+/*   console.log(info) */
+  return new Promise((resolve, reject)=>{
+    infoLinks = info.map(link => {
+      return fetch(link.href).then(res => {
+      if (res.ok) console.log({'file': link.file, 'href':link.href, 'status': res.status, 'statusText':res.statusText, 'text':link.text})
+      else {throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
     }
+ })})})}
 
-  let fetchLink = fetch(info[i].href)
-        .then(statu)
-        .catch((error) => {
-          if (error instanceof Error) {console.log(`HTTP ${error.status} ${error.statusText}`)}})
-  array.push(fetchLink)
-
-}
-return array}
+ Promise.all(infoLinks)
+ .then(res => {resolve(info)}) //{resolve(info)}
+ .catch((error) => {if (error instanceof Error){`HTTP ${error.status} ${error.statusText}`}})
 
 /* function noOption(hola) {
     hola.forEach(element => {return ({'href': element.href,'text':element.text,'file': element.file})})}
@@ -42,17 +36,16 @@ export default function mdLinks(path, options) { //como colocar un valor por def
           let FilesFinded = Finder(pathConverted)
             if (FilesFinded) {
                 let FilesReader =reader(FilesFinded)
-
                 if(options.validate)resolve(validate(FilesReader))
                 else
-                console.log(resolve(FilesReader))
+                console.log(resolve(chalk.bold.white(FilesReader)))
 
 
             } else {
-                reject('no hay archivos')
+                reject(chalk.bold.red('Not files'))
             }
         } else {
-            reject('no existe el path')
+            reject(chalk.bold.red('Path doesnt exist'))
         }
     })
 }

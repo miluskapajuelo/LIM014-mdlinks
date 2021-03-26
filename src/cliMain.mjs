@@ -3,7 +3,6 @@ import mdLinks from './main.mjs'
 
 const ruta = '../src'
 mdLinks(ruta,{validate:true})
-    .then(element => Promise.all(element))
     .then(result => console.log(result))
     .catch((err) => console.log(err))
 
