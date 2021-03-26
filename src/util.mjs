@@ -30,46 +30,51 @@ const convertPath = (path) => {
 
 let array2 = []
 //Find .md files
-function Finder(path) {
+function findePaths(path) {
     let ruta = convertPath(path)
     if (PathDirectory(ruta)) {
         const routes = readDir(ruta)
 
         if (routes.length !== 0) {
             routes.forEach((file) => {
-                Finder(ruta + `/${file}`)
-                if (extname(file) == '.md')
-                array2.push(ruta + `/${file}`)
+              findePaths(ruta + `/${file}`)
+                if (extname(file) == '.md') array2.push(ruta + `/${file}`)
             })
         }
     }
+
     return array2
 }
 
 //Read path
-const reader = (arrayPaths) => arrayPaths.map((element) => {
-         {  let text = regexLinkFull.exec(readFile(element))
-            if (text !== null) {
 
-                let href = getText(...text)
+const findLinks = (arrayPaths) => arrayPaths.map((element) => readFile(element).match(regexLinkFull))
 
-                return {
-                    href: href[1],
-                    text: href[0].substring(0, 50),
-                    file: element,
-                }
-            }
-        }
-    })
+const propertiesLink = (arrayLinks) => arrayLinks.map((text) =>
+  {
+    let eachLink = getText(...text)
+
+   let objets = {
+    'href': eachLink[1],
+    'text': eachLink[0].substring(0, 50),
+    'file': text,
+   }
+
+   return objets
+
+
+})
+
 
 //Export functions
 export {
     convertPath,
-    reader,
-    Finder,
+    findePaths,
     readDir,
     PathDirectory,
     readFile,
     getText,
     itExist,
+    findLinks,
+    propertiesLink
 }
