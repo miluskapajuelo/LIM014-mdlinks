@@ -13,21 +13,25 @@ import chalk from 'chalk'
 // dirnameFunction + '/archivo.md'
 let statusLinksFiles;
 const validate = (info) =>{
-  return new Promise((resolve, reject)=>{
-    statusLinksFiles = info.map(link => {return fetch(link.href).then(res => {
 
+  return new Promise((resolve, reject)=>{
+
+    statusLinksFiles = info.map(link => {return fetch(link.href).then(res => {
+      /* console.log(link) */
       if(res.ok){
-        let statusLink = {'file': link.file, 'href':link.href, 'status': res.status, 'statusText':res.statusText, 'text':link.text}
+        let statusLink = {'file': link.file, 'href':link.href, 'status': res.status, 'statusText':'OK', 'text':link.text}
         resolve(statusLink)
 
     } else {
-         throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+      let statusLink = {'file': link.file, 'href':link.href, 'status': res.status, 'statusText':'fail', 'text':link.text}
+      reject(statusLink)
+
     }
  })})})}
 
  Promise.all(statusLinksFiles)
  .then(res => res)
- .catch((error) => {`HTTP ${error.status} ${error.statusText}`})
+ .catch(error => error)
 
 
 export default function mdLinks(path, options) { //como colocar un valor por defecto
@@ -37,13 +41,11 @@ export default function mdLinks(path, options) { //como colocar un valor por def
           let FilesFinded = findePaths(pathConverted)
             if (FilesFinded) {
                 let filesReader =findLinks(FilesFinded)
-                console.log(filesReader)
-                let linksFinder = propertiesLink(filesReader)
 
+                let linksFinder = propertiesLink(filesReader)
                 if(options.validate)resolve(validate(linksFinder))
                 else
                 resolve(chalk.bold.white(FilesReader))
-
 
             } else {
                 reject(chalk.bold.red('Not files'))
@@ -54,5 +56,4 @@ export default function mdLinks(path, options) { //como colocar un valor por def
     })
 }
 
-/* resolve(noOption(FilesReader))  */
 

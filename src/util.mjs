@@ -37,7 +37,7 @@ function findePaths(path) {
 
         if (routes.length !== 0) {
             routes.forEach((file) => {
-              findePaths(ruta + `/${file}`)
+                findePaths(ruta + `/${file}`)
                 if (extname(file) == '.md') array2.push(ruta + `/${file}`)
             })
         }
@@ -48,23 +48,30 @@ function findePaths(path) {
 
 //Read path
 
-const findLinks = (arrayPaths) => arrayPaths.map((element) => readFile(element).match(regexLinkFull))
+const findLinks = (arrayPaths) =>
+    arrayPaths.reduce((accumulator, user) => {
+        const fullName = readFile(user).match(regexLinkFull)
+        if (fullName) {
+            accumulator = accumulator + fullName
+        }
 
-const propertiesLink = (arrayLinks) => arrayLinks.map((text) =>
-  {
-    let eachLink = getText(...text)
+        return accumulator.split(',')
+    }, [])
 
-   let objets = {
-    'href': eachLink[1],
-    'text': eachLink[0].substring(0, 50),
-    'file': text,
-   }
+/* const findLinks = (arrayPaths) => arrayPaths.map((element) => readFile(element).match(regexLinkFull)) */
 
-   return objets
+const propertiesLink = (arrayLinks) =>
+    arrayLinks.map((text) => {
+      console.log(text)
+        let eachLink = getText(text)
 
-
-})
-
+        let objets = {
+            href: eachLink[1],
+            text: eachLink[0].substring(0, 50),
+            file: text,
+        }
+        return objets
+    })
 
 //Export functions
 export {
@@ -76,5 +83,5 @@ export {
     getText,
     itExist,
     findLinks,
-    propertiesLink
+    propertiesLink,
 }
