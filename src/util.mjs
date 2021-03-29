@@ -62,7 +62,6 @@ const findLinks = (arrayPaths) =>
 
 const propertiesLink = (arrayLinks) =>
     arrayLinks.map((text) => {
-      console.log(text)
         let eachLink = getText(text)
 
         let objets = {
