@@ -1,7 +1,6 @@
 /* ESM script example */
 //Import modules
 import { count } from 'console'
-import { text } from 'express'
 import { readdirSync, readFileSync, statSync, existsSync } from 'fs'
 import { isAbsolute, resolve, extname, normalize } from 'path'
 
@@ -14,14 +13,14 @@ const itExist = (path) => existsSync(path)
 const PathDirectory = (path) => statSync(path).isDirectory()
 const readDir = (path) => readdirSync(path)
 const readFile = (path) => readFileSync(path).toString('utf8')
-const getText = (text) => text.match(regexLink)
+const getText = (ja) => ja.match(regexLink)
 
 //function 1
 //Convert path and normalize
 const convertPath = (path) => {
     let result
     if (!isAbsolute(normalize(path))) {
-        return resolve(normalize(path))
+        return normalize(path)
     }
     result = path
 
@@ -44,43 +43,40 @@ function findePaths(path) {
     }
 
     return array2
+
 }
 
-//Read path
+function findLinks(path) {
+let a = []
+path.forEach(Element => {let c = readFile(Element).match(regexLinkFull)
+  if(c !== null){
+    a.push(c)
+  }})
 
-const findLinks = (arrayPaths) =>
-    arrayPaths.reduce((accumulator, user) => {
-        const fullName = readFile(user).match(regexLinkFull)
-        if (fullName) {
-            accumulator = accumulator + fullName
-        }
+return a.flat()
+}
 
-        return accumulator.split(',')
-    }, [])
+const propertiesLink = (arrayLinks, file) =>
+arrayLinks.map((text) => {
 
-/* const findLinks = (arrayPaths) => arrayPaths.map((element) => readFile(element).match(regexLinkFull)) */
-
-const propertiesLink = (arrayLinks) =>
-    arrayLinks.map((text) => {
         let eachLink = getText(text)
-
         let objets = {
-            href: eachLink[1],
-            text: eachLink[0].substring(0, 50),
-            file: text,
+            'href': eachLink[1],
+            'text': eachLink[0].substring(0, 50),
+            'file': text,
         }
         return objets
     })
 
 //Export functions
 export {
-    convertPath,
-    findePaths,
-    readDir,
-    PathDirectory,
-    readFile,
-    getText,
-    itExist,
-    findLinks,
-    propertiesLink,
+  convertPath,
+  findePaths,
+  readDir,
+  PathDirectory,
+  readFile,
+  getText,
+  itExist,
+  findLinks,
+  propertiesLink,
 }
