@@ -1,7 +1,7 @@
 import mdLinks from './main.mjs'
 
 
-const ruta = '../practica'
+const ruta = '../src'
 mdLinks(ruta,{validate:true})
     .then(result => console.log(result))
     .catch((err) => console.log(err))

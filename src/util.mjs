@@ -1,11 +1,13 @@
 /* ESM script example */
 //Import modules
 import { count } from 'console'
+import { text } from 'express'
 import { readdirSync, readFileSync, statSync, existsSync } from 'fs'
 import { isAbsolute, resolve, extname, normalize } from 'path'
 
 //Regular Expressions
 const regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
+const pathReg = /\.\.\\[a-zA-Z0-9.-/]+/gim
 const regexLinkFull = /\[[a-zA-Z0-9-.]+\](www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
 
 //Short functions
@@ -13,7 +15,7 @@ const itExist = (path) => existsSync(path)
 const PathDirectory = (path) => statSync(path).isDirectory()
 const readDir = (path) => readdirSync(path)
 const readFile = (path) => readFileSync(path).toString('utf8')
-const getText = (ja) => ja.match(regexLink)
+
 
 //function 1
 //Convert path and normalize
@@ -46,27 +48,30 @@ function findePaths(path) {
 
 }
 
-function findLinks(path) {
-let a = []
-path.forEach(Element => {let c = readFile(Element).match(regexLinkFull)
-  if(c !== null){
-    a.push(c)
-  }})
 
-return a.flat()
+function findLinks(path) {
+  let objets
+  let a = []
+path.forEach(Element => {let c = readFile(Element).match(regexLinkFull)
+
+  if(c !== null){
+    c = c.toString()
+    let d = c.match(regexLink)
+    objets = {
+      'href': d[1],
+      'text': d[0],
+      'file': Element,
+  }
+  a.push(objets)
+
+  }
+
+});return a
+
+
 }
 
-const propertiesLink = (arrayLinks, file) =>
-arrayLinks.map((text) => {
 
-        let eachLink = getText(text)
-        let objets = {
-            'href': eachLink[1],
-            'text': eachLink[0].substring(0, 50),
-            'file': text,
-        }
-        return objets
-    })
 
 //Export functions
 export {
@@ -75,8 +80,9 @@ export {
   readDir,
   PathDirectory,
   readFile,
-  getText,
   itExist,
   findLinks,
-  propertiesLink,
+/*   getpath,
+  propertiesLink */
+
 }

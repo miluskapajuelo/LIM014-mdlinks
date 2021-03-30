@@ -2,7 +2,7 @@
 import { rejects } from 'assert'
 import { dirname, extname } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
-import { findePaths, itExist, convertPath, findLinks, propertiesLink } from './util.mjs'
+import { findePaths, itExist, convertPath, findLinks/* , propertiesLink, getpath */} from './util.mjs'
 import { readdirSync, statSync } from 'fs'
 import { response } from 'express';
 import fetch from 'node-fetch';
@@ -43,13 +43,9 @@ let array = []
         let FilesFinded = findePaths(pathConverted)
           if (FilesFinded) {
               let filesReader =findLinks(FilesFinded)
-              let linksFinder = propertiesLink(filesReader)
-            console.log(linksFinder)}
-
-              /* if(options.validate)resolve(validate(linksFinder))
-              else
-              resolve(white(FilesReader))
-          }  */else {
+              if(options.validate)resolve(validate(filesReader))
+              else resolve(white(FilesReader))
+          }  else {
               reject(red('Not files'))
           }
       } else {
