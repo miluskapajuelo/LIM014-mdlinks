@@ -1,1 +1,1 @@
-[pet]https://www.pet.com.pe
+[pet]https://pet.com.pe

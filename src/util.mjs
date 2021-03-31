@@ -51,26 +51,40 @@ function findePaths(path) {
 
 function findLinks(path) {
   let objets
+  let objetsA
   let a = []
 path.forEach(Element => {let c = readFile(Element).match(regexLinkFull)
+let count =c.length
+if(c !== null){
+  if(count==1){
 
-  if(c !== null){
     c = c.toString()
+
     let d = c.match(regexLink)
+
     objets = {
       'href': d[1],
       'text': d[0],
       'file': Element,
   }
-  a.push(objets)
+  a.push(objets)}
+  if(count>1){
 
-  }
+    c.forEach(Element => {
+      let d = Element.match(regexLink)
 
-});return a
+      objetsA = {
+        'href': d[1],
+        'text': d[0],
+        'file': Element,
+      }
+
+      a.push(objetsA)
+      })
+      }
 
 
-}
-
+}});return a}
 
 
 //Export functions

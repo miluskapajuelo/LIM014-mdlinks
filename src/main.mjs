@@ -32,6 +32,28 @@ let array = []
   console.error({'file': link.file, 'href':link.href, 'status': 'fail', 'statusText':'not exist','text':link.text})})
  })})}
 
+
+
+ /* const stats = (info) =>{
+  let  dataArray = new Set(info);
+  let result = [...dataArray]
+
+  console.log(dataArray+'/n Total: '  + info.length)}
+
+  getUniqueListBy(aaa)
+
+
+  function getUniqueListBy(info) {
+    let a =  [...new Map(info.map(item => [item, item])).values()]
+    console.log(a) */
+
+  /* for (let i=0; i < info.length;i++){ */
+    /* array.push(info[i].href) */
+/*     const dataArray = new Set(array);
+    total = info.length
+ */
+
+
  Promise.all(statusLinksFiles)
  .then(res => res)
  .catch(error => error)
@@ -42,11 +64,17 @@ let array = []
       if (itExist(pathConverted)) {
         let FilesFinded = findePaths(pathConverted)
           if (FilesFinded) {
+
               let filesReader =findLinks(FilesFinded)
-              if(options.validate)resolve(validate(filesReader))
-              else resolve(white(FilesReader))
+
+              if(options == ''){
+                resolve(filesReader)
+              }
+              else{
+              if(options.validate){resolve(validate(filesReader))}
+              else {resolve(filesReader)}}
           }  else {
-              reject(red('Not files'))
+              reject('Not files')
           }
       } else {
           reject(red('Path doesnt exist'))
