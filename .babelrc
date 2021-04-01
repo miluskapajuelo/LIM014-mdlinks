@@ -1,4 +1,4 @@
 {
   "presets": ["@babel/preset-env"],
-  "plugins": ["add-module-exports"]
+  "plugins": ["@babel/plugin-transform-modules-commonjs"] //otro plugin para import export
 }

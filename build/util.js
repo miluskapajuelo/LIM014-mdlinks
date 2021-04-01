@@ -3,8 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Finder = Finder;
-exports.getText = exports.readFile = exports.PathDirectory = exports.readDir = exports.reader = exports.convertPath = void 0;
+exports.findePaths = findePaths;
+exports.findLinks = findLinks;
+exports.itExist = exports.readFile = exports.PathDirectory = exports.readDir = exports.convertPath = void 0;
 
 var _console = require("console");
 
@@ -14,23 +15,18 @@ var _fs = require("fs");
 
 var _path = require("path");
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
+/* ESM script example */
+//Import modules
 //Regular Expressions
 var regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim;
+var pathReg = /\.\.\\[a-zA-Z0-9.-/]+/gim;
 var regexLinkFull = /\[[a-zA-Z0-9-.]+\](www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim; //Short functions
 
-/* const itExist = (path) => existsSync(path) */
+var itExist = function itExist(path) {
+  return (0, _fs.existsSync)(path);
+};
+
+exports.itExist = itExist;
 
 var PathDirectory = function PathDirectory(path) {
   return (0, _fs.statSync)(path).isDirectory();
@@ -46,72 +42,72 @@ exports.readDir = readDir;
 
 var readFile = function readFile(path) {
   return (0, _fs.readFileSync)(path).toString('utf8');
-};
-
-exports.readFile = readFile;
-
-var getText = function getText(text) {
-  return text.match(regexLink);
 }; //function 1
 //Convert path and normalize
 
 
-exports.getText = getText;
+exports.readFile = readFile;
 
 var convertPath = function convertPath(path) {
-  var normalizePath = (0, _path.normalize)(path);
-  var result;
-
-  if (!(0, _path.isAbsolute)(normalizePath)) {
-    return (0, _path.resolve)(normalizePath);
+  if (!(0, _path.isAbsolute)((0, _path.normalize)(path))) {
+    return (0, _path.resolve)(path);
+  } else {
+    return path;
   }
-
-  result = path;
-  return result;
-}; //Read path
-
+};
 
 exports.convertPath = convertPath;
+var array2 = []; //Find .md files
 
-var reader = function reader(path) {
-  var array = [];
-
-  if ((0, _path.extname)(path) == '.md') {
-    var _text = regexLinkFull.exec(readFile(path));
-
-    if (_text !== null) {
-      var href = getText.apply(void 0, _toConsumableArray(_text));
-      var Data = {
-        'href': href[1],
-        'text': href[0].substring(0, 50),
-        'file': path
-      };
-      array.push(Data);
-    }
-  }
-
-  return array;
-}; //Find .md files
-
-
-exports.reader = reader;
-
-function Finder(path) {
-  var array2 = [];
+function findePaths(path) {
   var ruta = convertPath(path);
 
   if (PathDirectory(ruta)) {
     var routes = readDir(ruta);
 
-    if (routes.length == 0) {
-      return 'no hay información aquí';
+    if (routes.length !== 0) {
+      routes.forEach(function (file) {
+        findePaths(ruta + "/".concat(file));
+        if ((0, _path.extname)(file) == '.md') array2.push(ruta + "/".concat(file));
+      });
     }
-
-    routes.forEach(function (file) {
-      var route = Finder(ruta + "/".concat(file));
-      array2 = array2.concat(ruta + "/".concat(file));
-    });
   }
 
   return array2;
+}
+
+function findLinks(path) {
+  var objets;
+  var objetsA;
+  var a = [];
+  path.forEach(function (Element) {
+    var c = readFile(Element).match(regexLinkFull);
+    var count = c.length;
+
+    if (c !== null) {
+      if (count == 1) {
+        c = c.toString();
+        var d = c.match(regexLink);
+        objets = {
+          'href': d[1],
+          'text': d[0],
+          'file': Element
+        };
+        a.push(objets);
+      }
+
+      if (count > 1) {
+        c.forEach(function (Element2) {
+          var d = Element2.match(regexLink);
+          objetsA = {
+            'href': d[1],
+            'text': d[0],
+            'file': Element
+          };
+          a.push(objetsA);
+        });
+      }
+    }
+  });
+  return a;
 } //Export functions
