@@ -9,8 +9,6 @@ exports.itExist = exports.readFile = exports.PathDirectory = exports.readDir = e
 
 var _console = require("console");
 
-var _express = require("express");
-
 var _fs = require("fs");
 
 var _path = require("path");
@@ -57,7 +55,7 @@ var convertPath = function convertPath(path) {
 };
 
 exports.convertPath = convertPath;
-var array2 = []; //Find .md files
+var filesFinded = []; //Find .md files
 
 function findePaths(path) {
   var ruta = convertPath(path);
@@ -68,46 +66,47 @@ function findePaths(path) {
     if (routes.length !== 0) {
       routes.forEach(function (file) {
         findePaths(ruta + "/".concat(file));
-        if ((0, _path.extname)(file) == '.md') array2.push(ruta + "/".concat(file));
+        if ((0, _path.extname)(file) == '.md') filesFinded.push(ruta + "/".concat(file));
       });
     }
   }
 
-  return array2;
+  return filesFinded;
 }
 
-function findLinks(path) {
-  var objets;
+function findLinks(paths) {
+  var objetsB;
   var objetsA;
-  var a = [];
-  path.forEach(function (Element) {
-    var c = readFile(Element).match(regexLinkFull);
-    var count = c.length;
+  var propertiesLink = [];
+  paths.forEach(function (path) {
+    var linkPlusTag = readFile(path).match(regexLinkFull);
 
-    if (c !== null) {
-      if (count == 1) {
-        c = c.toString();
-        var d = c.match(regexLink);
-        objets = {
-          'href': d[1],
-          'text': d[0],
-          'file': Element
+    if (linkPlusTag !== null) {
+      var _count = linkPlusTag.length;
+
+      if (_count == 1) {
+        linkPlusTag = linkPlusTag.toString();
+        var d = linkPlusTag.match(regexLink);
+        objetsA = {
+          href: d[1],
+          text: d[0],
+          file: path
         };
-        a.push(objets);
+        propertiesLink.push(objetsA);
       }
 
-      if (count > 1) {
-        c.forEach(function (Element2) {
-          var d = Element2.match(regexLink);
-          objetsA = {
-            'href': d[1],
-            'text': d[0],
-            'file': Element
+      if (_count > 1) {
+        linkPlusTag.forEach(function (link) {
+          var d = link.match(regexLink);
+          objetsB = {
+            href: d[1],
+            text: d[0],
+            file: path
           };
-          a.push(objetsA);
+          propertiesLink.push(objetsB);
         });
       }
     }
   });
-  return a;
+  return propertiesLink;
 } //Export functions

@@ -1,6 +1,8 @@
 import {convertPath, readDir ,PathDirectory, itExist, readFile, findePaths, findLinks} from '../build/util.js'
+import {validate, mdLinks} from '../build/main.js'
 
 const RelativePath = '../prueba'
+const RelativePath2 = '../src'
 const AbsolutePrueb =  "C:\\Users\\milus\\Desktop\\Repositorios\\prueba"
 const AbsolutePath = 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\test\\prueba'
 const pathPruebaFolder = 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\test\\prueba'//path.join(process.cwd() 'practica')
@@ -54,6 +56,9 @@ const PropertiesFileMd3 =[
   }
 ]
 const text = '[google]www.google.com.pe'
+
+
+
 
 //util.js
 //function 1 convertPath
@@ -170,4 +175,65 @@ describe('Find files .md', () => {
   });
 
 });
+
+
+const prueba = [
+  {
+    href: 'http://www.google.com.pe/',
+    text: 'google',
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md'
+  },
+  {
+    href: 'http://www.facebook.com.pe/',
+    text: 'facebook',
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md'
+  },
+  {
+    href: 'https://nodejs.org/e/',
+    text: 'node404',
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo2.md'
+  },
+]
+
+const retorno = [
+  {
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md',
+    href: 'http://www.google.com.pe/',
+    status: 200,
+    statusText: 'OK',
+    text: 'google'
+  },
+  {
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo.md',
+    href: 'http://www.facebook.com.pe/',
+    status: 'fail',
+    statusText: 'not exist',
+    text: 'facebook'
+  },
+  {
+    file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\src/archivo2.md',
+    href: 'https://nodejs.org/e/',
+    status: 404,
+    statusText: 'fail',
+    text: 'node404'
+  }]
+
+describe('should validate link', () => {
+
+  it('It should return if validate (ok, fail) and status', () => {
+    return validate(prueba).then((res)=>{
+      expect(res).toEqual(retorno);
+    });
+  });
+});
+
+describe('should MDLINKS return an array of objects', () => {
+
+  it('It should return if validate(true)', () => {
+    return mdLinks(pathPruebaFolder,{validate:true}).then((res)=>{
+      expect(res).toEqual(retorno);
+    });
+  });
+});
+
 

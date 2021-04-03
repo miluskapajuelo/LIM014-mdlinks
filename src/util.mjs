@@ -4,6 +4,7 @@ import { count } from 'console'
 import { readdirSync, readFileSync, statSync, existsSync } from 'fs'
 import { isAbsolute, resolve, extname, normalize } from 'path'
 
+
 //Regular Expressions
 const regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gim
 const pathReg = /\.\.\\[a-zA-Z0-9.-/]+/gim
@@ -25,7 +26,7 @@ const convertPath = (path) => {
     }
 }
 
-let array2 = []
+let filesFinded = []
 //Find .md files
 function findePaths(path) {
     let ruta = convertPath(path)
@@ -35,46 +36,47 @@ function findePaths(path) {
         if (routes.length !== 0) {
             routes.forEach((file) => {
                 findePaths(ruta + `/${file}`)
-                if (extname(file) == '.md') array2.push(ruta + `/${file}`)
+                if (extname(file) == '.md') filesFinded.push(ruta + `/${file}`)
             })
         }
     }
 
-    return array2
+    return filesFinded
 }
 
-function findLinks(path) {
-    let objets
+function findLinks(paths) {
+    let objetsB
     let objetsA
-    let a = []
-    path.forEach((Element) => {
-        let c = readFile(Element).match(regexLinkFull)
-        let count = c.length
-        if (c !== null) {
+    let propertiesLink = []
+    paths.forEach((path) => {
+        let linkPlusTag = readFile(path).match(regexLinkFull)
+
+        if (linkPlusTag !== null) {
+          let count = linkPlusTag.length
             if (count == 1) {
-                c = c.toString()
-                let d = c.match(regexLink)
-                objets = {
+                linkPlusTag = linkPlusTag.toString()
+                let d = linkPlusTag.match(regexLink)
+                objetsA = {
                     href: d[1],
                     text: d[0],
-                    file: Element,
+                    file: path,
                 }
-                a.push(objets)
+                propertiesLink.push(objetsA)
             }
             if (count > 1) {
-                c.forEach((Element2) => {
-                    let d = Element2.match(regexLink)
-                    objetsA = {
+                linkPlusTag.forEach((link) => {
+                    let d = link.match(regexLink)
+                    objetsB = {
                         href: d[1],
                         text: d[0],
-                        file: Element,
+                        file: path,
                     }
-                    a.push(objetsA)
+                    propertiesLink.push(objetsB)
                 })
             }
         }
     })
-    return a
+    return propertiesLink
 }
 
 //Export functions

@@ -2,7 +2,7 @@ import mdLinks from './main.mjs'
 import chalk from 'chalk'
 
 
-const ruta = '../src'
+const ruta = '../test'
 mdLinks(ruta,{validate:true})
 /* mdLinks(ruta,'') */
     .then(result => console.log(result))

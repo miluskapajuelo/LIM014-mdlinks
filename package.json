@@ -2,7 +2,7 @@
   "name": "miluskapajuelov",
   "version": "0.1.0",
   "description": "Project: Create a function to read md files and get URLs and can use --validate, --stats",
-  "main": "src/main.mjs",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/miluskapajuelo/LIM014-mdlinks.git"
@@ -14,6 +14,7 @@
     "lint": "eslint .",
     "prepublish": "npm run build"
   },
+
   "Keywords": [
     "npm",
     "API",

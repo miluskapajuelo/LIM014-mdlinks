@@ -4,22 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = mdLinks;
+exports.validate = void 0;
 
-var _assert = require("assert");
-
-var _path = require("path");
-
-var _url = require("url");
-
-var _util = require("./util.mjs");
-
-var _fs = require("fs");
-
-var _express = require("express");
+var _util = require("./util.js");
 
 var _nodeFetch = _interopRequireDefault(require("node-fetch"));
-
-var _chalk = _interopRequireDefault(require("chalk"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33,52 +22,47 @@ var statusLinksFiles;
 var status;
 
 var validate = function validate(info) {
-  var array = [];
-  return new Promise(function (resolve, reject) {
-    statusLinksFiles = info.map(function (link) {
-      return (0, _nodeFetch["default"])(link.href).then(function (res) {
-        status = res.status;
+  statusLinksFiles = info.map(function (link) {
+    return (0, _nodeFetch["default"])(link.href).then(function (res) {
+      status = res.status;
 
-        if (res.ok) {
-          var statusLink = {
-            'file': link.file,
-            'href': link.href,
-            'status': status,
-            'statusText': 'OK',
-            'text': link.text
-          };
-          resolve(statusLink);
-        } else {
-          var _statusLink = {
-            'file': link.file,
-            'href': link.href,
-            'status': status,
-            'statusText': 'fail',
-            'text': link.text
-          };
-          reject(_statusLink);
-        }
-      })["catch"](function (err) {
-        console.error({
-          'file': link.file,
-          'href': link.href,
-          'status': 'fail',
-          'statusText': 'not exist',
-          'text': link.text
-        });
-      });
+      if (
+      /* res.ok */
+      status < 400 && status >= 200) {
+        var statusLink = {
+          file: link.file,
+          href: link.href,
+          status: status,
+          statusText: 'OK',
+          text: link.text
+        };
+        return statusLink;
+      } else {
+        var _statusLink = {
+          file: link.file,
+          href: link.href,
+          status: status,
+          statusText: 'fail',
+          text: link.text
+        };
+        return _statusLink;
+      }
+    })["catch"](function (err) {
+      return {
+        file: link.file,
+        href: link.href,
+        status: 'fail',
+        statusText: 'not exist',
+        text: link.text
+      };
     });
   });
+  return Promise.all(statusLinksFiles);
 };
 
-Promise.all(statusLinksFiles).then(function (res) {
-  return res;
-})["catch"](function (error) {
-  return error;
-});
+exports.validate = validate;
 
 function mdLinks(path, options) {
-  //como colocar un valor por defecto
   return new Promise(function (resolve, reject) {
     var pathConverted = (0, _util.convertPath)(path);
 
@@ -92,7 +76,11 @@ function mdLinks(path, options) {
           resolve(filesReader);
         } else {
           if (options.validate) {
-            resolve(validate(filesReader));
+            resolve(validate(filesReader).then(function (res) {
+              return res;
+            }))["catch"](function (error) {
+              return error;
+            });
           } else {
             resolve(filesReader);
           }
@@ -101,9 +89,7 @@ function mdLinks(path, options) {
         reject('Not files');
       }
     } else {
-      reject(red('Path doesnt exist'));
+      reject('Path doesnt exist');
     }
   });
 }
-
-module.exports = exports.default;
