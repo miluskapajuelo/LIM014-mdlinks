@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = mdLinks;
+exports.mdLinks = mdLinks;
 exports.validate = void 0;
 
 var _util = require("./util.js");

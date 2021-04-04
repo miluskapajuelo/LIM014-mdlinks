@@ -217,6 +217,29 @@ const retorno = [
     statusText: 'fail',
     text: 'node404'
   }]
+  const retorno2 = [
+    {
+      file:  "C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\test\\prueba/link.md",
+      href: 'www.google.com.pe',
+      status: 'fail',
+      statusText: 'not exist',
+      text: 'google'
+    },
+    {
+      file: "C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\test\\prueba/prueba2/link2.md",
+      href: 'www.otraPrueba.com',
+      status: 'fail',
+      statusText: 'not exist',
+      text: 'Otraprueba'
+    },
+    {
+      file: 'C:\\Users\\milus\\Desktop\\Repositorios\\LIM014-mdlinks\\test\\prueba/prueba2/link2.md',
+      href: 'www.google.com.pe',
+      status: 'fail',
+      statusText: 'not exist',
+      text: 'Otraprueba2'
+    }
+  ]
 
 describe('should validate link', () => {
 
@@ -231,7 +254,7 @@ describe('should MDLINKS return an array of objects', () => {
 
   it('It should return if validate(true)', () => {
     return mdLinks(pathPruebaFolder,{validate:true}).then((res)=>{
-      expect(res).toEqual(retorno);
+      expect(res).toEqual(retorno2);
     });
   });
 });

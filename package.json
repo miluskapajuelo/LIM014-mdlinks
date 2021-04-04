@@ -14,7 +14,6 @@
     "lint": "eslint .",
     "prepublish": "npm run build"
   },
-
   "Keywords": [
     "npm",
     "API",
@@ -22,6 +21,9 @@
   ],
   "author": "Miluska Pajuelo <miluskapajuelo@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "md-links": "./cliMain.mjs"
+  },
   "bugs": {
     "url": "https://github.com/miluskapajuelo/LIM014-mdlinks/issues"
   },
@@ -65,6 +67,7 @@
     "chalk": "^4.1.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "inquirer": "^8.0.0",
     "markdown-it": "^12.0.4",
     "node-fetch": "^2.6.1"
   }

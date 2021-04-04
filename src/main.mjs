@@ -1,6 +1,5 @@
-/* ESM script example */
-import { findePaths, itExist, convertPath, findLinks } from './util.js'
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
+import { findePaths, itExist, convertPath, findLinks } from './util.mjs';
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 /* const cwd = pathToFileURL(`${process.cwd()}/`).href */
