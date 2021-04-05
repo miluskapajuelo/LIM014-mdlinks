@@ -73,7 +73,6 @@ const statsValidate = (info) => {
 
 const stats = (info) => {
   let array = [];
-  let array2 = [];
   let result;
   for (let i = 0; i < info.length; i++) {
     array.push(info[i].href);
