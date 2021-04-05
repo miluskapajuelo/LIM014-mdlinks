@@ -1,4 +1,66 @@
 {
-  "name": "md-links",
-  "version": "0.1.0"
+  "name": "miluskapajuelo",
+  "version": "1.0.0",
+  "description": "Herramienta que lee y analiza archivos Markdown para verficar los links contenidos y reportar estadísticas",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "start": "node src/mdLinks.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miluskapajuelo/LIM014-mdlinks.git"
+  },
+  "author": "miluskapajuelo <miluskapajuelo@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "mdLinks": "src/cli.js"
+  },
+  "keywords": [
+    "markdown",
+    "md",
+    "links",
+    "href",
+    "title",
+    "text",
+    "status",
+    "statusText",
+    "md-links",
+    "file",
+    "files",
+    "dir",
+    "directory",
+    "filesystem",
+    "file-system",
+    "article",
+    "extract",
+    "get",
+    "url",
+    "urls",
+    "http",
+    "validate",
+    "validation",
+    "http request",
+    "cli",
+    "cli-app",
+    "bin",
+    "promise"
+  ],
+  "bugs": {
+    "url": "https://github.com/miluskapajuelo/LIM014-mdlinks/issues"
+  },
+  "homepage": "https://github.com/miluskapajuelo/LIM014-mdlinks#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3"
+  }
 }
