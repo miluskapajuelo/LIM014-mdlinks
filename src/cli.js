@@ -11,7 +11,7 @@ let options = {
 
 if (args.length === 5) {
     if (args.includes('--stats' && '--validate')) {
-            options.statsValidate = true //cambiar por validate necesito el valor de validate para obtener los broken links
+            options.statsValidate = true 
         }}
 if (args.length === 4) {
         if(things === '--validate'|| things === 'validate'){
@@ -20,10 +20,6 @@ if (args.length === 4) {
 if(things === '--stats' || things === 'stats'){
     options.stats = true
 }}
-
-
-
-
 
 /* process.cwd() */
 
@@ -34,21 +30,14 @@ if (!path) {
     console.log(colors.red('Ingrese la ruta de un directorio o archivo'));
   } else {
     mdLinks(path,options)
-    .then(array => { if (!options.stats && !options.validate){
+    .then(array => { if (!options.stats && !options.validate && !options.statsValidate){
         array.forEach(element =>console.log(`${element.file}\t ${element.href}\t ${element.text}`))}
     else if (options.validate){
         array.forEach(element =>console.log(`${element.file}\t ${element.href}\t ${element.text}\t ${element.status}\t ${element.statusText}`))
     }
-    else if (options.stats){console.log(`quantity: ${array[0]}\t unique: ${array[1]}`)
+    else if (options.stats){console.log(`quantity: ${array.sizeLink}\t unique: ${array.uniqueLink}`)
     }
-    else if (options.statsValidate){console.log(`holii: ${array[0]}\t chauu: ${array[1]}`)}})
+    else if (options.statsValidate){console.log(`quantity: ${array.sizeLink}\t broken: ${array.brokeLink}`)}})
     .catch((err) => console.log(err))
   }
-console.log(args.length )
 
-/* 
-  mdLinks(path,options)
-  .then(result => console.log(result))
-  .catch((err) => console.log(err)) */
-
-  

@@ -57,17 +57,21 @@ const validateLink = (filesReader) =>
 
 const statsValidate = (info) => {
   let array = [];
-  let validate = validateLink(info)
+  validateLink(info)
     .catch((link) => {
       array.push(link)
     });
+    if(array.length === 0){
+        return {
+            'sizeLink': info.length,
+            'brokeLink': 0
+    }}
     return {
-    'sizeLink': info.length,
-    'brokeLink': array.length
-}};
+        'sizeLink': info.length,
+        'brokeLink': array.length
+    }}
 
 const stats = (info) => {
-  const tamaño = info.length;
   let array = [];
   let array2 = [];
   let result;
@@ -77,11 +81,10 @@ const stats = (info) => {
     total = info.length;
     result = [...dataArray];
   }
-  let unique = result.length;
-  array2.push(tamaño);
-  array2.push(unique);
-  return array2;
-};
+  return {
+    'sizeLink': info.length,
+    'uniqueLink': result.length
+};}
 
 function mdLinks(path, options) {
   return new Promise((resolve, reject) => {
