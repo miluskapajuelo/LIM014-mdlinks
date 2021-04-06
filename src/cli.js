@@ -34,7 +34,7 @@ if (!path) {
   console.log(colors.red("Ingrese la ruta de un directorio o archivo"));
 } else {
   mdLinks(path, options)
-    .then((array) => {console.log(array)
+    .then((array) => {
       if (!options.stats && !options.validate && !options.statsValidate) {
         array.forEach((element) => {
           const file = paths.relative(path, element.file);
@@ -49,7 +49,7 @@ if (!path) {
       } else if (options.stats) {
         console.log(`Total: ${array.sizeLink}\t Unique: ${array.uniqueLink}`);
       } else if (options.statsValidate) {
-        console.log(`Total: ${array.sizeLink}\t broken: ${array.brokeLink}`);
+        console.log(`Total: ${array.sizeLink}\t broken: ${array.brokeLink} \t unique: ${array.unique} `);
       }
     })
     .catch((err) => console.log(err));

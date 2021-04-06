@@ -49,41 +49,13 @@ const validate = (info) => {
   return Promise.all(statusLinksFiles);
 };
 
-//como hago el test de est, es posible, lo saque por el statsvalidate
-const validateLink = (filesReader) =>
-  validate(filesReader)
-    .then((res) => res)
-    .catch((error) => error);
-
-const statsValidate = (info) => {  
-  validateLink(info)
-    .then((hola) => { 
-    let failPaths = hola.filter(element => element.statusText == 'fail');
-    let array = {
-      sizeLink: info.length,
-      brokeLink: failPaths.length,
-    };
-    console.log(array)
-    return array
-    })  
-    return {
-      'sizeLink' : 200,
-      'brokeLink': 200
-    }
-};
-
-
 const stats = (info) => {
   let result;
   let array = info.map((Element) => Element.href);
   const dataArray = new Set(array);
   total = info.length;
   result = [...dataArray];
-
-  return {
-    sizeLink: info.length,
-    uniqueLink: result.length,
-  };
+  return result;
 };
 
 function mdLinks(path, options) {
@@ -100,11 +72,31 @@ function mdLinks(path, options) {
           resolve(filesReader);
         } else {
           if (options.validate) {
-            resolve(validateLink(filesReader));
+            resolve(
+              validate(filesReader)
+                .then((res) => res)
+                .catch((err) => err)
+            );
           } else if (options.stats) {
-            resolve(stats(filesReader));
+            let casa = stats(filesReader);
+            let holi = {
+              sizeLink: filesReader.length,
+              uniqueLink: casa.length,
+            };
+            resolve(holi);
           } else if (options.statsValidate) {
-            resolve(statsValidate(filesReader));
+            validate(filesReader).then((hola) => {
+              let failPaths = hola.filter(
+                (element) => element.statusText == "fail"
+              );
+              let casa = stats(filesReader);
+              let array = {
+                sizeLink: hola.length,
+                brokeLink: failPaths.length,
+                unique: casa.length,
+              };
+              resolve(array);
+            });
           } else {
             resolve(filesReader);
           }
