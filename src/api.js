@@ -16,7 +16,7 @@ const validate = (info) => {
     return fetch(link.href)
       .then((res) => {
         status = res.status;
-        if (/* res.ok */ status < 400 && status >= 200) {
+        if (status < 400 && status >= 200) {
           let statusLink = {
             file: link.file,
             href: link.href,
@@ -41,7 +41,7 @@ const validate = (info) => {
           file: link.file,
           href: link.href,
           status: "fail",
-          statusText: "not exist",
+          statusText: "fail",
           text: link.text,
         };
       });
@@ -55,35 +55,36 @@ const validateLink = (filesReader) =>
     .then((res) => res)
     .catch((error) => error);
 
-const statsValidate = (info) => {
-  let array = [];
+const statsValidate = (info) => {  
   validateLink(info)
-    .catch((link) => {
-      array.push(link)
-    });
-    if(array.length === 0){
-        return {
-            'sizeLink': info.length,
-            'brokeLink': 0
-    }}
+    .then((hola) => { 
+    let failPaths = hola.filter(element => element.statusText == 'fail');
+    let array = {
+      sizeLink: info.length,
+      brokeLink: failPaths.length,
+    };
+    console.log(array)
+    return array
+    })  
     return {
-        'sizeLink': info.length,
-        'brokeLink': array.length
-    }}
+      'sizeLink' : 200,
+      'brokeLink': 200
+    }
+};
+
 
 const stats = (info) => {
-  let array = [];
   let result;
-  for (let i = 0; i < info.length; i++) {
-    array.push(info[i].href);
-    const dataArray = new Set(array);
-    total = info.length;
-    result = [...dataArray];
-  }
+  let array = info.map((Element) => Element.href);
+  const dataArray = new Set(array);
+  total = info.length;
+  result = [...dataArray];
+
   return {
-    'sizeLink': info.length,
-    'uniqueLink': result.length
-};}
+    sizeLink: info.length,
+    uniqueLink: result.length,
+  };
+};
 
 function mdLinks(path, options) {
   return new Promise((resolve, reject) => {
@@ -99,9 +100,7 @@ function mdLinks(path, options) {
           resolve(filesReader);
         } else {
           if (options.validate) {
-            resolve(
-              validateLink(filesReader)
-            ); /* validate(filesReader).then((res) => res)).catch((error) => error) */
+            resolve(validateLink(filesReader));
           } else if (options.stats) {
             resolve(stats(filesReader));
           } else if (options.statsValidate) {

@@ -1,9 +1,11 @@
-const { readdirSync, readFileSync, statSync, existsSync } = require("fs");
+const { readdirSync, readFileSync, statSync, existsSync, link } = require("fs");
 const { isAbsolute, resolve, extname, normalize } = require("path");
 
 //Regular Expressions
-const regexLink = /(www\.|https?:\/\/)?[a-zA-Z0-9-.]+[/a-zA-Z0-9-.]+/gm;
-const regexLinkFull = /\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#-&_%~,.:]+)\)/gm;
+const regexLinkText = /\[([\w\s\d.À-ÿ()]+)\]/gim;
+const regexLinkLink =/\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gim;
+const regexLinkFull = /\[([\w\s\d.À-ÿ]+)\]\([?:\/|https?:?\/\/]+[\w\d./?=#-&_%~,\-.:]+\)/gim;
+
 
 //Short functions
 const itExist = (path) => existsSync(path);
@@ -14,31 +16,25 @@ const readFile = (path) => readFileSync(path, "utf8");
 
 //function 1
 //Convert path and normalize
-const convertPath = (path) => {
-  if (!isAbsolute(normalize(path))) {
-    return resolve(path);
-  } else {
-    return path;
-  }
-};
-
+const convertPath = (path) => isAbsolute(path) ? path : resolve(path)  //normalize
 
 function findePaths(path) {
     let filesFinded = [];
-    let ruta = convertPath(path);
-    if (PathFile(ruta)) {
-        if (extname(ruta) == ".md") filesFinded.push(ruta)
+    /* let ruta = convertPath(path); */
+    if (PathFile(path)) {
+        if (extname(path) == ".md") filesFinded.push(path)
         return filesFinded;
     }
-      const routes = readDir(ruta);
+      const routes = readDir(path);
   
       if (routes.length !== 0) {
         routes.forEach((file) => {
-          let files = findePaths(ruta + `/${file}`);
+          let files = findePaths(path + `/${file}`);
           filesFinded = filesFinded.concat(files);          
         });
       }
-      
+    
+    return filesFinded;
     }
 
 function findLinks(paths) {
@@ -50,26 +46,33 @@ function findLinks(paths) {
     let linkPlusTag = readFile(path).match(regexLinkFull);
 
     if (linkPlusTag !== null) {
+      
       let count = linkPlusTag.length;
+      
       if (count == 1) {
         linkPlusTag = linkPlusTag.toString();
-
-        let d = linkPlusTag.match(regexLink);
+        let href = linkPlusTag.match(regexLinkLink);
+        
+        let text = linkPlusTag.match(regexLinkText)
 
         objetsA = {
-          href: d[1],
-          text: d[0],
-          file: path,
+          'href': href,
+          'text': text,
+          'file': path,
         };
         propertiesLink.push(objetsA);
       }
       if (count > 1) {
         linkPlusTag.forEach((link) => {
-          let d = link.match(regexLink);
+          
+          let href = link.match(regexLinkLink).join().slice(1, -1);
+
+          let text = link.match(regexLinkText).join().slice(1, -1);
+ 
           objetsB = {
-            href: d[1],
-            text: d[0],
-            file: path,
+            'href': href,
+            'text': text,
+            'file': path,
           };
           propertiesLink.push(objetsB);
         });
