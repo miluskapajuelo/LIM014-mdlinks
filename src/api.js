@@ -46,10 +46,12 @@ const validate = (info) => {
         };
       });
   });
+  
   return Promise.all(statusLinksFiles);
 };
 
-const stats = (info) => {
+const unique = (info) => {
+  
   let result;
   let array = info.map((Element) => Element.href);
   const dataArray = new Set(array);
@@ -60,36 +62,37 @@ const stats = (info) => {
 
 function mdLinks(path, options) {
   return new Promise((resolve, reject) => {
+
     let pathConverted = convertPath(path);
 
     if (itExist(pathConverted)) {
       let FilesFinded = findePaths(pathConverted);
-
+       
       if (FilesFinded) {
         let filesReader = findLinks(FilesFinded);
 
         if (options == "") {
           resolve(filesReader);
         } else {
-          if (options.validate) {
-            resolve(
+          if (options.validate) { //validate
+            resolve(              
               validate(filesReader)
-                .then((res) => res)
+                .then((res) => (res))
                 .catch((err) => err)
             );
-          } else if (options.stats) {
-            let casa = stats(filesReader);
+          } else if (options.stats) {      //stats
+            let casa = unique(filesReader);
             let holi = {
               sizeLink: filesReader.length,
               uniqueLink: casa.length,
             };
             resolve(holi);
-          } else if (options.statsValidate) {
+          } else if (options.statsValidate) {       //statsValidate
             validate(filesReader).then((hola) => {
               let failPaths = hola.filter(
                 (element) => element.statusText == "fail"
               );
-              let casa = stats(filesReader);
+              let casa = unique(filesReader);
               let array = {
                 sizeLink: hola.length,
                 brokeLink: failPaths.length,
@@ -97,7 +100,7 @@ function mdLinks(path, options) {
               };
               resolve(array);
             });
-          } else {
+          } else {                                  //not option
             resolve(filesReader);
           }
         }
@@ -113,4 +116,5 @@ function mdLinks(path, options) {
 module.exports = {
   validate,
   mdLinks,
+  unique
 };

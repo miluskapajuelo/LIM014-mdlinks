@@ -51,9 +51,9 @@ function findLinks(paths) {
       
       if (count == 1) {
         linkPlusTag = linkPlusTag.toString();
-        let href = linkPlusTag.match(regexLinkLink);
+        let href = linkPlusTag.match(regexLinkLink).join().slice(1, -1);
         
-        let text = linkPlusTag.match(regexLinkText)
+        let text = linkPlusTag.match(regexLinkText).join().slice(1, -1)
 
         objetsA = {
           'href': href,
