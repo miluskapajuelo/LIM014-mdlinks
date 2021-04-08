@@ -33,7 +33,7 @@ inquirer
     else if(optionChoosen){
       mdLinks(paths,optionChoosen)
         .then((res) => console.log(table(res, config)))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(chalk.inverse(err)));
       }
   })
  /*  .catch((error) => {

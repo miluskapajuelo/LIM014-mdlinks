@@ -7,11 +7,6 @@ const {
 const fetch = require("node-fetch");
 const paths = require("path");
 
-
-
-/* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
-/* const cwd = pathToFileURL(`${process.cwd()}/`).href */
-// dirnameFunction + '/archivo.md'
 let statusLinksFiles;
 let status;
 const validate = (info) => {
@@ -80,20 +75,20 @@ function mdLinks(path, options) {
                         let brokenLinks = res.filter(
                           (element) => element.statusText == "fail"
                         );
-                        let casa = unique(filesReader);
-                        let aa = [
-                          casa.length,
-                          filesReader.length,
-                          brokenLinks.length,
+                        let uniqueValue = unique(filesReader);
+                        let array = [
+                          'Total: '+ filesReader.length,
+                          'Unique: '+ uniqueValue.length,
+                          'Broken: '+  brokenLinks.length,
                         ];
-                        return [aa];
+                        return [array];
                       })
                       .catch((err) => err)
                   );
                 } else {
-                  let casa = unique(filesReader);
+                  let uniqueValue = unique(filesReader);
 
-                  let array = [[casa.length, filesReader.length]];
+                  let array = [['Total: '+  filesReader.length, 'Unique: '+ uniqueValue.length]];
                   resolve(array);
                 }
               } else {
@@ -101,11 +96,12 @@ function mdLinks(path, options) {
                   validate(filesReader)
                     .then((res) =>
                       res.map((element) => [
-                        paths.relative(path, element.file),
-                        element.href,
-                        element.text,
-                        element.status,
-                        element.statusText,
+                        'file: '+paths.relative(path, element.file),
+                        'href: '+ element.href,
+                        'statusText: '+ element.statusText,
+                        'status: '+ element.status,
+                        'text: '+ element.text,
+                        
                       ])
                     )
                     .catch((err) => err)
@@ -113,21 +109,21 @@ function mdLinks(path, options) {
               }
             } else {
               let array = filesReader.map((element) => [
-                paths.relative(path, element.file),
-                element.href,
-                element.text,
+                'file: '+ paths.relative(path, element.file),
+                'href: '+ element.href,
+                'total: '+ element.text,
               ]);
               resolve(array);
             }
           }
         } else {
-          reject("Not files");
+          reject("This path hasnt files .md, write again mdLinks");
         }
       } else {
-        reject("Path doesnt exist");
+        reject("Path doesnt exist, write again mdLinks");
       }
     } else {
-      reject("enter a path");
+      reject("Enter a path please, write again mdLinks");
     }
   });
 }

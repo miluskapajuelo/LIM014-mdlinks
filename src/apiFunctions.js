@@ -2,9 +2,9 @@ const { readdirSync, readFileSync, statSync, existsSync, link } = require("fs");
 const { isAbsolute, resolve, extname, normalize } = require("path");
 
 //Regular Expressions
-const regexLinkText = /\[([\w\s\d.À-ÿ()]+)\]/gim;
-const regexLinkLink =/\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gim;
-const regexLinkFull = /\[([\w\s\d.À-ÿ]+)\]\([?:\/|https?:?\/\/]+[\w\d./?=#-&_%~,\-.:]+\)/gim;
+const regexLinkText = /\[([\w\s\d.|À-ÿ()]+)\]/gim;
+const regexLinkLink =/\(((?:\/|https?:\/\/)[\w\d\s./?=#&_%~,\-.:]+)\)/gim;
+const regexLinkFull = /\[([\w\s\d.|()À-ÿ]+)\]\([?:\/|https?:?\/\/]+[\w\d\s./?=#-&_%~,\-.:]+\)/gim;
 
 
 //Short functions
