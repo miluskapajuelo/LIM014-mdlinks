@@ -7,7 +7,7 @@ const {
   findePaths,
   findLinks,
 } = require("../src/apiFunctions");
-const { validate, unique, mdLinks } = require("../src/api");
+const { validate, unique, mdLinks } = require("../src/apiCli");
 
 const linkAbsolute = __dirname;
 const linkRelative = "./test";

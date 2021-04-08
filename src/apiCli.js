@@ -95,14 +95,16 @@ function mdLinks(path, options) {
                 resolve(
                   validate(filesReader)
                     .then((res) =>
-                      res.map((element) => [
+                      res.map((element) =>{ 
+                        let texto= element.text;
+                        console.log(texto)
+                        let array =[
                         'file: '+paths.relative(path, element.file),
                         'href: '+ element.href,
                         'statusText: '+ element.statusText,
                         'status: '+ element.status,
-                        'text: '+ element.text,
-                        
-                      ])
+                        'text: '+ texto.slice(0,50)]
+                        return array})
                     )
                     .catch((err) => err)
                 );
