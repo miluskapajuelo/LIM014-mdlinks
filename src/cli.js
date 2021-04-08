@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const colors = require("colors");
 const { table } = require("table");
-const { mdLinks } = require("./api.js");
+const { mdLinks } = require("./apiCli.js");
 const chalk = require("chalk");
 const {choose} = require("./options.js")
 
@@ -36,12 +36,6 @@ inquirer
         .catch((err) => console.log(chalk.inverse(err)));
       }
   })
- /*  .catch((error) => {
-    if (error.isTtyError) {
-      console.log(error + "2");
-    } else {
-      console.log(chalk.magenta(error + "1"));
-    }
-  }); */
+
 
 

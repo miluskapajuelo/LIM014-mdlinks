@@ -25,9 +25,8 @@ function findePaths(path) {
         if (extname(path) == ".md") filesFinded.push(path)
         return filesFinded;
     }
-      const routes = readDir(path);
-  
-      if (routes.length !== 0) {
+      const routes = readDir(path);  
+      if (routes.length != 0) {
         routes.forEach((file) => {
           let files = findePaths(path + `/${file}`);
           filesFinded = filesFinded.concat(files);          

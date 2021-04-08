@@ -63,7 +63,7 @@ function mdLinks(path, options) {
       let pathConverted = convertPath(path);
       if (itExist(pathConverted)) {
         let FilesFinded = findePaths(pathConverted);
-        if (FilesFinded) {
+        if (FilesFinded.length != 0) {
           let filesReader = findLinks(FilesFinded);
           if (filesReader) {
             if (options.stats || options.validate) {
