@@ -56,7 +56,9 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "colors": "^1.4.0",
-    "node-fetch": "^2.6.1"
+    "inquirer": "^8.0.0",
+    "node-fetch": "^2.6.1",
+    "table": "^6.0.9"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
