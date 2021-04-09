@@ -14,10 +14,10 @@ const resumeInfo = (info, number) => {
   let uniqueLinks = unique(info).length;
   let brokenLinks = broke(info).length;
   if (number == 2) {
-    return [["Total: " + total, "Unique: " + uniqueLinks]];
+    return [["Total paths: " + total, "Unique paths: " + uniqueLinks]];
   } else {
     return [
-      ["Total: " + total, "Unique: " + uniqueLinks, "Broken: " + brokenLinks],
+      ["Total paths: " + total, "Unique paths: " + uniqueLinks, "Broken paths: " + brokenLinks],
     ];
   }
 };
