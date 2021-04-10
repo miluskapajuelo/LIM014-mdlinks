@@ -20,6 +20,16 @@ const config = {
     }
 }}
 
+const messageHelp= [
+  ["files", "Show you basic information about your files"],
+  ["validate", "Show you status information about links finded in files"],
+  ["stats", "Show you statistical data. Total links, Unique links"],
+  [
+    "stats & validate",
+    "Show you statistical data. Total links, Unique links, Broke links",
+  ],
+]
+
 var inquirer = require("inquirer");
 inquirer
   .prompt([
@@ -45,7 +55,7 @@ inquirer
     let option = answers.option;
     let route = answers.path;
     if (option == "Help, need instructions :)") {
-      console.log(table(help(option), config));
+      console.log(table(messageHelp, config));
     } 
     else if (option) {
       if (option == "--validate & --stats") {
@@ -74,6 +84,7 @@ inquirer
         let optionChoosen = { validate: false, stats: true };
         mdLinks(route, optionChoosen)
           .then((res) => {
+            console.log(res)
             let finalArray = resumeInfo(res, 2);
             console.log(table(finalArray, config));
           })

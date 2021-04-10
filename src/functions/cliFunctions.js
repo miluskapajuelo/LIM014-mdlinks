@@ -7,6 +7,7 @@ const unique = (info) => {
   return result;
 };
 
+
 const broke = (info) => info.filter((element) => element.statusText == "fail");
 
 const resumeInfo = (info, number) => {
@@ -22,20 +23,9 @@ const resumeInfo = (info, number) => {
   }
 };
 
-const help = (info) => {if (option == "Help, need instructions :)") {
-    return [
-      ["files", "Show you basic information about your files"],
-      ["validate", "Show you status information about links finded in files"],
-      ["stats", "Show you statistical data. Total links, Unique links"],
-      [
-        "stats & validate",
-        "Show you statistical data. Total links, Unique links, Broke links",
-      ],
-    ];}}
 
 module.exports = {
   unique,
   broke,
   resumeInfo,
-  help
 };

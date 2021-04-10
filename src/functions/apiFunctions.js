@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync, statSync, existsSync, link } = require("fs");
+const { readdirSync, readFileSync, statSync, existsSync } = require("fs");
 const { isAbsolute, resolve, extname, normalize } = require("path");
 
 //Regular Expressions
