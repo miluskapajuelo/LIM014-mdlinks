@@ -3,16 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mdLinks = mdLinks;
+exports["default"] = mdLinks;
 exports.validate = void 0;
-
-var _util = require("./util.js");
 
 var _nodeFetch = _interopRequireDefault(require("node-fetch"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _util = require("./util.mjs");
 
-/* ESM script example */
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* const dirnameFunction = dirname(fileURLToPath(import.meta.url)) */
 

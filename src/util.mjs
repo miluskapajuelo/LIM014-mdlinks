@@ -19,7 +19,6 @@ const readFile = (path) => readFileSync(path).toString('utf8')
 //function 1
 //Convert path and normalize
 const convertPath = (path) => {
-  console.log(path)
     if (!isAbsolute(normalize(path))) {
         return resolve(path)
     } else {
@@ -41,7 +40,7 @@ function findePaths(path) {
             })
         }
     }
-    console.log(filesFinded)
+
     return filesFinded
 }
 
@@ -77,7 +76,6 @@ function findLinks(paths) {
             }
         }
     })
-    console.log(propertiesLink)
     return propertiesLink
 }
 
