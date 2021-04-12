@@ -51,10 +51,6 @@ const validateLinksFAIL = [{
       },
   ];
 //function 3 mdlinks
-/* test("comprueba si validate es una promesa ", () => {
-  return expect(validate(pathOK)).toBeInstanceOf(Promise);
-});
- */
 describe("validate OK", () => {
   test("Promise test case VALIDATE OK 200" , () => {
     fetch.mockImplementation(()=>Promise.resolve({

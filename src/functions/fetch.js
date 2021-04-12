@@ -19,8 +19,8 @@ const validate = (info) => {
           let statusLink = {
             file: link.file,
             href: link.href,
-            status: status,
-            statusText: "fail",
+            status: 'no found',
+            statusText: "FAIL",
             text: link.text,
           };
           return statusLink;
@@ -30,8 +30,8 @@ const validate = (info) => {
         return {
           file: link.file,
           href: link.href,
-          status: "fail",
-          statusText: "fail",
+          status: status,
+          statusText: "FAIL",
           text: link.text,
         };
       });

@@ -7,7 +7,7 @@ const unique = (info) => {
 };
 
 
-const broke = (info) => info.filter((element) => element.statusText == "fail");
+const broke = (info) => info.filter((element) => element.statusText == "FAIL");
 
 const resumeInfo = (info, number) => {
   let total = info.length;

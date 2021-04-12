@@ -3,21 +3,29 @@ const { table } = require("table");
 const { mdLinks } = require("./api.js");
 const { resumeInfo } = require("./functions/cliFunctions");
 const chalk = require("chalk");
-const paths = require("path");
+const path = require("path")
 
 const config = {
   /* singleLine: true, */
   columns: {
     0: {
-      width: 20
+      width: 33,
+
     },
     1: {
-      width: 42
+      width: 31
+    },
+    2: {
+      width: 30
+    },
+    3: {
+      width: 20
     },
     4: {
-      width: 24
+      width: 28
     }
-}}
+}
+  }
 
 const messageHelp= [
   ["files", "Show you basic information about your files"],
@@ -25,7 +33,7 @@ const messageHelp= [
   ["stats", "Show you statistical data. Total links, Unique links"],
   [
     "stats & validate",
-    "Show you statistical data. Total links, Unique links, Broke links",
+    "Show you statistical data. Total links, Unique links, Broken links",
   ],
 ]
 
@@ -69,37 +77,40 @@ inquirer
         let optionChoosen = { validate: true, stats: false };
         mdLinks(route, optionChoosen)
           .then((res) => {
-            const finalTble=[];
-             res.map((element) => {
-              const rout = paths.relative(__dirname,element.file);
-              const text = element.text.length > 50 ?  element.text.slice(0,50):element.text
-              const statusLink = element.status === 200 ? chalk.green(element.statusText) : chalk.red(element.statusText);
-              finalTble= [
-              "File: " +  rout,
+            const finalTble= res.map((element) => {
+              const text= element.text
+              const statusT = element.statusText == 'FAIL' ? chalk.red(element.statusText) : chalk.green(element.statusText)
+              const textLink = text.length > 50 ?  text.slice(0,50):text
+              return  [
+              "File: " +  path.relative(__dirname,element.file),
               "Href: " + element.href,
-              "Status: " + statusLink,
-              "StatusText: " + text,
-              "Text: " + element.text,
+              "Status: " + element.status,
+              "StatusText: " + statusT,
+              "Text: " + textLink,
             ]});
-            console.log(table([['holi']], config));  //finalTble
+            console.log(table(finalTble, config)); //([['Total: '+ finalTble.length + ' links','','','','']].concat(finalTble), config)
           })
           .catch((err) => console.log(chalk.inverse(err)));
-      } else if (option == "--stats") {
+      }  else if (option == "--stats") {
         let optionChoosen = { validate: false, stats: true };
         mdLinks(route, optionChoosen)
           .then((res) => {
             let finalArray = resumeInfo(res, 2);
+            
             console.log(table(finalArray, config));
           })
           .catch((err) => console.log(chalk.inverse(err)));
-      } else {
+      }  else {
         let optionChoosen = { validate: false, stats: false };
         mdLinks(route, optionChoosen).then((res) => {
-          let finalArray = res.map((element) => [
-            "File: " + paths.relative(route, element.file),
+          let finalArray = res.map((element) => {
+            const text= element.text
+            const textLink = text.length > 50 ?  text.slice(0,50):text
+            return [
+            "File: " + path.relative(__dirname,element.file),
             "Href: " + element.href,
-            "Text: " + element.text,
-          ]);
+            "Text: " + textLink,
+          ]});
           console.log(table(finalArray, config));
         });
       }
