@@ -38,15 +38,15 @@ const validateLinksFAIL = [{
     file: __dirname + "/prueba/somePaths.md",
     href: "https://nodejs.org/e/",
     status: 404,
-    statusText: "fail",
+    statusText: "FAIL",
     text: "node",
 }];
   const validateLinksNOTFOUND = [
     {
         file: __dirname + "/prueba/somePaths.md",
         href: "https://facebook.com.pe",
-        status: "fail",
-        statusText: "fail",
+        status: "no found",
+        statusText: "FAIL",
         text: "facebook",
       },
   ];
@@ -62,7 +62,7 @@ describe("validate OK", () => {
   test("Promise test case VALIDATE FAIL 404" , () => {
     fetch.mockImplementation(()=>Promise.resolve({
       status : 404,
-      statusText:'not found'
+      statusText:'FAIL'
     }))
     return expect(validate(pathFAIL)).resolves.toEqual(validateLinksFAIL);
   });

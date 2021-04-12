@@ -48,14 +48,14 @@ const validateLinks = [
     file: __dirname + "/prueba/somePaths.md",
     href: "https://nodejs.org/e/",
     status: 404,
-    statusText: "fail",
+    statusText: "FAIL",
     text: "node",
   },
   {
     file: __dirname + "/prueba/somePaths.md",
     href: "https://facebook.com.pe",
-    status: "fail",
-    statusText: "fail",
+    status: "no found",
+    statusText: "FAIL",
     text: "facebook",
   },
   {
@@ -79,14 +79,14 @@ const failLinks = [
       file: __dirname + "/prueba/somePaths.md",
       href: "https://nodejs.org/e/",
       status: 404,
-      statusText: "fail",
+      statusText: "FAIL",
       text: "node",
     },
     {
       file: __dirname + "/prueba/somePaths.md",
       href: "https://facebook.com.pe",
-      status: "fail",
-      statusText: "fail",
+      status: "no found",
+      statusText: "FAIL",
       text: "facebook",
     }
   ];

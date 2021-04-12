@@ -28,12 +28,12 @@ const config = {
   }
 
 const messageHelp= [
-  ["files", "Show you basic information about your files"],
-  ["validate", "Show you status information about links finded in files"],
-  ["stats", "Show you statistical data. Total links, Unique links"],
+  ["option: --basic", "Shows basic information about your files"],
+  ["option: --validate", "Shows status information about links e.g OK, FAIL status"],
+  ["option: --stats", "Shows statistical information. [Total links, Unique links]"],
   [
-    "stats & validate",
-    "Show you statistical data. Total links, Unique links, Broken links",
+    "option: --stats & validate",
+    "Shows statistical information. [Total links, Unique links, Broken links]",
   ],
 ]
 
@@ -116,3 +116,4 @@ inquirer
       }
     }
   })
+  .catch(err => console.log(err))

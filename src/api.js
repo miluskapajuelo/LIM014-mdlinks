@@ -15,7 +15,7 @@ function mdLinks(path, options) {
         let FilesFinded = findePaths(pathConverted);
         if (FilesFinded.length != 0) {
           let filesReader = findLinks(FilesFinded);
-          if (filesReader) {
+          if (filesReader.length != []) {
             if (options.validate) {
               resolve(
                 validate(filesReader)
