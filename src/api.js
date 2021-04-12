@@ -5,7 +5,7 @@ const {
   findLinks,
 } = require("./functions/apiFunctions.js");
 
-const{validate} = require("./functions/fetch")
+const { validate } = require("./functions/fetch");
 
 function mdLinks(path, options) {
   return new Promise((resolve, reject) => {
@@ -39,7 +39,6 @@ function mdLinks(path, options) {
     }
   });
 }
-
 
 module.exports = {
   mdLinks,

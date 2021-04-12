@@ -6,11 +6,11 @@ const validate = (info) => {
     return fetch(link.href)
       .then((res) => {
         status = res.status;
-        if (status < 400 && status >= 200) {
+        if (status === 200) {
           let statusLink = {
             file: link.file,
             href: link.href,
-            status: status,
+            status: 200,
             statusText: "OK",
             text: link.text,
           };

@@ -2,7 +2,6 @@ const unique = (info) => {
   let result;
   let array = info.map((Element) => Element.href);
   const dataArray = new Set(array);
-  total = info.length;
   result = [...dataArray];
   return result;
 };

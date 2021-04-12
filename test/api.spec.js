@@ -28,10 +28,12 @@ test('comprueba si mdlinks retorna un promesa que se resuelve con  un array de o
     return expect(mdLinks(linkErr, '')).rejects.toMatch('Path doesnt exist, write again mdLinks');
     });
   it("Promise test case NO FILES", () => {
-    return expect(mdLinks(linkEmpty, '')).rejects.toMatch('This path hasnt files or directories, write again mdLinks');
-    });
-
+    return mdLinks(linkEmpty, '').catch((err) => {
+      expect(err).toEqual('This path hasnt files or directories, write again mdLinks')
+    });})
   it("Promise test case NO LINKS", () => {
-    return expect(mdLinks(noLinks, '')).rejects.toMatch('This path hasnt links, write again mdLinks');
+    return mdLinks(noLinks, '').catch((err) => {
+      expect(err).toEqual('This path hasnt links, write again mdLinks')
     });
+});
   });

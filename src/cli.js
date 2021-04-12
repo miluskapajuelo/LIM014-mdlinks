@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const colors = require("colors");
 const { table } = require("table");
 const { mdLinks } = require("./api.js");
 const { resumeInfo } = require("./functions/cliFunctions");
@@ -70,21 +69,25 @@ inquirer
         let optionChoosen = { validate: true, stats: false };
         mdLinks(route, optionChoosen)
           .then((res) => {
-            let finalArray = res.map((element) => [
-              "File: " +  element.file,
+            const finalTble=[];
+             res.map((element) => {
+              const rout = paths.relative(__dirname,element.file);
+              const text = element.text.length > 50 ?  element.text.slice(0,50):element.text
+              const statusLink = element.status === 200 ? chalk.green(element.statusText) : chalk.red(element.statusText);
+              finalTble= [
+              "File: " +  rout,
               "Href: " + element.href,
-              "Status: " + element.status,
-              "StatusText: " + element.statusText,
+              "Status: " + statusLink,
+              "StatusText: " + text,
               "Text: " + element.text,
-            ]);
-            console.log(table(finalArray, config)); //paths.relative(route, element.file),
+            ]});
+            console.log(table([['holi']], config));  //finalTble
           })
           .catch((err) => console.log(chalk.inverse(err)));
       } else if (option == "--stats") {
         let optionChoosen = { validate: false, stats: true };
         mdLinks(route, optionChoosen)
           .then((res) => {
-            console.log(res)
             let finalArray = resumeInfo(res, 2);
             console.log(table(finalArray, config));
           })
@@ -102,4 +105,3 @@ inquirer
       }
     }
   })
-  .catch((err) => console.log(chalk.inverse("Try again")));
