@@ -178,5 +178,5 @@ Broken: 1
 
 
 # Author
-[[Jhoselyn Miluska Pajuelo Villanueva](https://https://github.com/miluskapajuelo/)]
+[Jhoselyn Miluska Pajuelo Villanueva](https://github.com/miluskapajuelo/)
 
