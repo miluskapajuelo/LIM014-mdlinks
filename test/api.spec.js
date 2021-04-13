@@ -1,6 +1,6 @@
 const {
     mdLinks
-  } = require("../src/api.js");
+  } = require("../src/index.js");
   
   const {
     linkErr,somePath,propertiesSomeLink,validateLinks,linkEmpty,noLinks

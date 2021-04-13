@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { table } = require("table");
-const { mdLinks } = require("./api.js");
+const { mdLinks } = require("./index.js");
 const { resumeInfo } = require("./functions/cliFunctions");
 const chalk = require("chalk");
 const path = require("path")

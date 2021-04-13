@@ -1,12 +1,20 @@
+<a name="table"></a>
+# Table
+[![GitHub followers](https://img.shields.io/github/followers/miluskapajuelo?style=social)](https://github.com/miluskapajuelo)
+[![Twitter Follow](https://img.shields.io/twitter/follow/miluskapajuelo?style=social)](https://twitter.com/miluskapajuelo)
+
+A way to find status and stadistical information of all links in a markdown file. 
+
 # Markdown Links
 
-## Índice
-
-* [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+## Table of Contents
+* [Goals and Philosofy](#Goals-and-Philosofy)
+* [Documentation](#Documentation)
+    *[Intallation](#Intallation)
+    *[Usage](#Intallation)
+    *[Examples](#Examples)
+* [User Interfaces and Layouts](#2-User-Interfaces-and-Layouts)
+* [Minimum project acceptance criteria](#Minimum-project-acceptance-criteria)
 * [6. Entregables](#6-entregables)
 * [7. Hacker edition](#7-hacker-edition)
 * [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
@@ -14,7 +22,58 @@
 
 ***
 
-## 1. Preámbulo
+## Goals and Philosofy
+
+[Markdown](https://es.wikipedia.org/wiki/Markdown) is a lightweight markup language for creating formatted text using a plain-text editor. John Gruber and Aaron Swartz created Markdown in 2004 as a markup language that is appealing to human readers in its source code form. Markdown is widely used in blogging, instant messaging, online forums, collaborative software, documentation pages, and readme files (`README.md`).
+
+However .md files have a detail, some of these redirect you to pages that no longer exist or simply no longer redirect you anywhere. And that is where mdLinks comes in to solve this problem.
+
+## mdLinks
+
+It is a library that allows you to identify the links of a Markdown file
+
+**`mdLinks`** should ease the process of
+
+providing basic information about links in .md files
+providing stadistical information about links in .md files
+validating links 
+parsing input
+
+## Documentation
+
+### Installation
+
+All you need to do is position yourself in the folder where you need to use the library and type or paste the following command 
+
+> **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
+
+
+```shell
+npm install -g miluskapajuelo/LIM014-mdlinks
+```
+
+
+
+### Usage
+
+1. First of all write on shell **mdLinks**
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/c2FBzTC/mdLinks.png" alt="mdLinks" border="0"></a>
+
+2. Enter your absolute/relative path
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/YcXNLZT/path.png" alt="path" border="0"></a>
+
+3. Choose the option of your preference
+ <a href="https://imgbb.com/"><img src="https://i.ibb.co/mqSsLnB/options.png" alt="options" border="0"></a>
+
+> if you need more information select the last option **Help, need instructions :)**
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/gSTNfdb/helping.png" alt="helping" border="0"></a>
+
+#### 
+
+
+
+![Streaming current date.](./.README/streaming.gif)
 
 [Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
 ligero muy popular entre developers. Es usado en muchísimas plataformas que
@@ -31,22 +90,11 @@ herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
 en formato `Markdown`, para verificar los links que contengan y reportar
 algunas estadísticas.
 
-![md-links](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
 
 ## 2. Resumen del proyecto
 
-[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
-construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
-Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
-ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder
-interactuar con el sistema en sí, archivos, redes, ...
 
-En este proyecto nos alejamos un poco del navegador para construir un programa
-que se ejecute usando Node.js, donde aprenderemos sobre cómo interactuar con el
-sistema archivos, con el entorno (_proceso_, _env_, _stdin/stdout/stderr_), ...
-
-En este proyecto crearás una herramienta de línea de comando (CLI) así como tu
-propia librería (o biblioteca - library) en JavaScript.
+npm install -g miluskapajuelo/LIM014-mdlinks
 
 ## 3. Objetivos de aprendizaje
 
@@ -57,59 +105,6 @@ consideración en peculiaridades del lenguaje, convenciones y buenas prácticas.
 
 A continuación puedes ver los objetivos de aprendizaje de este proyecto:
 
-### JavaScript
-
-* [ ] Uso de condicionales (if-else | switch | operador ternario)
-* [ ] [Uso de funciones (parámetros | argumentos | valor de retorno)](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Funciones)
-* [ ] [Manipular arrays (filter | map | sort | reduce)](https://code.tutsplus.com/es/tutorials/how-to-use-map-filter-reduce-in-javascript--cms-26209)
-* [ ] [Manipular objects (key | value)](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object)
-* [ ] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-| [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
-* [ ] [Diferenciar entre expression y statements.](https://openclassrooms.com/en/courses/4309531-descubre-las-funciones-en-javascript/5108986-diferencia-entre-expresion-y-sentencia)
-* [ ] [Diferenciar entre tipos de datos atómicos y estructurados.](https://developer.mozilla.org/es/docs/Web/JavaScript/Data_structures)
-* [ ] [Uso de callbacks.](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-* [ ] [Consumo de Promesas.](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-* [ ] [Creación de Promesas.](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
-
-### Node
-
-* [ ] Uso de sistema de archivos. ([fs](https://nodejs.org/api/fs.html), [path](https://nodejs.org/api/path.html))
-* [ ] Instalar y usar módulos. ([npm](https://www.npmjs.com/))
-* [ ] Creación de modules. [(CommonJS)](https://nodejs.org/docs/latest-v0.10.x/api/modules.html)
-* [ ] [Configuración de package.json.](https://docs.npmjs.com/files/package.json)
-* [ ] [Configuración de npm-scripts](https://docs.npmjs.com/misc/scripts)
-* [ ] Uso de CLI (Command Line Interface - Interfaz de Línea de Comando)
-
-### Testing
-
-* [ ] [Testeo unitario.](https://jestjs.io/docs/es-ES/getting-started)
-* [ ] [Testeo asíncrono.](https://jestjs.io/docs/es-ES/asynchronous)
-* [ ] [Uso de librerias de Mock.](https://jestjs.io/docs/es-ES/manual-mocks)
-* [ ] Uso de Mocks manuales.
-* [ ] Testeo para múltiples Sistemas Operativos.
-
-### Estructura del código y guía de estilo
-
-* [ ] [Organizar y dividir el código en módulos (Modularización)](https://medium.com/@sebastianpaduano/modularizaci%C3%B3n-en-javascript-538bd6c75fa)
-* [ ] Uso de identificadores descriptivos ([Nomenclatura](http://snowdream.github.io/javascript-style-guide/javascript-style-guide/es/naming-conventions.html) | [Semántica](https://geekytheory.com/semantica-coder))
-* [ ] Uso de linter (ESLINT)
-
-### Git y GitHub
-
-* [ ] [Uso de comandos de git (add | commit | pull | status | push)](https://github.com/jlord/git-it-electron)
-* [ ] Manejo de repositorios de GitHub (clone | fork | gh-pages)
-* [ ] Colaboración en Github (branches | pull requests | |[tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging))
-* [ ] Organización en Github (projects | issues | labels | milestones)
-
-### HTTP
-
-* [ ] Verbos HTTP ([http.get](https://nodejs.org/api/http.html#http_http_get_options_callback))
-
-### Fundamentos de programación
-
-* [ ] [Recursión.](https://www.youtube.com/watch?v=lPPgY3HLlhQ)
-
-***
 
 ## 4. Consideraciones generales
 
@@ -402,3 +397,6 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
 * [ ] Pasa tests (y linters) (`npm test`).
+
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)]https://www.buymeacoffee.com/miluskapajuelo
