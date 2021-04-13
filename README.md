@@ -87,14 +87,11 @@ file: Path of the file where the link was found.
 2. Enter your absolute/relative path
 3. Choose the option of your preference 
 
-<a><img src="C:\Users\milus\Desktop\Repositorios\LIM014-mdlinks\img\validate.gif" alt="validate"></a>
-![Alt Text](C:\Users\milus\Desktop\Repositorios\LIM014-mdlinks\img\validate.gif)
+
+![Alt Text](./img/validate.gif)
 
 > if you need more information select the last option **Help, need instructions :)**
 
-
-
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/gSTNfdb/helping.png" alt="helping" border="0"></a>
 
 
 #### Options
