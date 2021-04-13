@@ -60,25 +60,26 @@ The module must be able to import into other Node.js scripts and must offer the 
 
 ###### Function
 ~~~
-function __mdLinks__
-  Enter a path: __src/abc.md__
-  Choose an option:  __Options__
+function mdLinks
+  Enter a path: src/abc.md
+  Choose an option:  Options
 ~~~
 
 ###### Arguments
 ~~~
-**path:** Absolute or relative path to the file or directory.
-**options:** An object with only the following property:
-**validate:** Boolean that determines if you want to validate the links found.
+  path: Absolute or relative path to the file or directory.
+  options: An object with only the following property:
+  validate: Boolean that determines if you want to validate the links found.
 ~~~
 
 ###### Return value
 ~~~
 The function must return a (Promise) that resolves to an (Array) of (Objects), where each object represents a link and contains the following properties:
 
-**href:** URL found.
-**text:** Text that appeared within the link (<a>).
-**file:** Path of the file where the link was found.
+href: URL found.
+text: Text that appeared within the link (<a>).
+file: Path of the file where the link was found.
+~~~
 
 ### Usage
 
