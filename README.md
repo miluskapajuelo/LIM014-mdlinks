@@ -1,17 +1,16 @@
 <a name="table"></a>
-# Table
+# Markdown Links
 [![GitHub followers](https://img.shields.io/github/followers/miluskapajuelo?style=social)](https://github.com/miluskapajuelo)
 [![Twitter Follow](https://img.shields.io/twitter/follow/miluskapajuelo?style=social)](https://twitter.com/miluskapajuelo)
 
 A way to find status and stadistical information of all links in a markdown file. 
-
-# Markdown Links
 
 ## Table of Contents
 * [Goals and Philosofy](#Goals-and-Philosofy)
 * [Documentation](#Documentation)
     *[Intallation](#Intallation)
     *[Usage](#Intallation)
+    *[Options](#Options)
     *[Examples](#Examples)
 * [User Interfaces and Layouts](#2-User-Interfaces-and-Layouts)
 * [Minimum project acceptance criteria](#Minimum-project-acceptance-criteria)
@@ -34,10 +33,10 @@ It is a library that allows you to identify the links of a Markdown file
 
 **`mdLinks`** should ease the process of
 
-providing basic information about links in .md files
-providing stadistical information about links in .md files
-validating links 
-parsing input
+* providing basic information about links in .md files
+* providing stadistical information about links in .md files
+* validating links 
+* parsing input
 
 ## Documentation
 
@@ -45,35 +44,107 @@ parsing input
 
 All you need to do is position yourself in the folder where you need to use the library and type or paste the following command 
 
-> **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
-
-
 ```shell
 npm install -g miluskapajuelo/LIM014-mdlinks
 ```
 
+> **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
 
+### API
+
+The module must be able to import into other Node.js scripts and must offer the following interface:
+
+*function **mdLinks***
+**Enter a path:** Path
+**Choose an option:** Options
+
+*Arguments*
+**path:** Absolute or relative path to the file or directory.
+**options:** An object with only the following property:
+**validate:** Boolean that determines if you want to validate the links found.
+
+
+*Return value*
+The function must return a (Promise) that resolves to an (Array) of (Objects), where each object represents a link and contains the following properties:
+
+**href:** URL found.
+**text:** Text that appeared within the link (<a>).
+**file:** Path of the file where the link was found.
 
 ### Usage
 
 1. First of all write on shell **mdLinks**
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/c2FBzTC/mdLinks.png" alt="mdLinks" border="0"></a>
-
 2. Enter your absolute/relative path
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/YcXNLZT/path.png" alt="path" border="0"></a>
+3. Choose the option of your preference 
 
-3. Choose the option of your preference
- <a href="https://imgbb.com/"><img src="https://i.ibb.co/mqSsLnB/options.png" alt="options" border="0"></a>
+![help, need instructions.](./src/img/help.gif)
+
+
 
 > if you need more information select the last option **Help, need instructions :)**
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/gSTNfdb/helping.png" alt="helping" border="0"></a>
 
-#### 
+
+#### Options
+
+##### Basic
+    **Option Basic** shows you 3 mean information 
+
+```shell
+href: www.abc.com.pe ,text: abc ,file: src/abc.md
+href: www.xyz.com.pe ,text: xyz ,file: src/
+```
+
+<!-- ![Streaming current date.](./.README/streaming.gif) -->
+
+##### Validate
+    **Option Basic** shows you 3 mean information 
+
+```shell
+href: www.abc.com.pe ,text: abc ,file: src/abc.md
+href: www.xyz.com.pe ,text: xyz ,file: src/
+```
+
+![Streaming current date.](img\validate.gif)
+
+##### Validate
+    **Option Basic** shows you 3 mean information 
+
+```shell
+href: www.abc.com.pe ,text: abc ,file: src/abc.md
+href: www.xyz.com.pe ,text: xyz ,file: src/
+```
+
+<!-- ![Streaming current date.](./.README/streaming.gif) -->
+
+##### Stats
+    **Option Basic** shows you 3 mean information 
+
+```shell
+href: www.abc.com.pe ,text: abc ,file: src/abc.md
+href: www.xyz.com.pe ,text: xyz ,file: src/
+```
+
+<!-- ![Streaming current date.](./.README/streaming.gif) -->
+
+##### Validate & Stats
+    **Option Basic** shows you 3 mean information 
+
+```shell
+href: www.abc.com.pe ,text: abc ,file: src/abc.md
+href: www.xyz.com.pe ,text: xyz ,file: src/
+```
+
+<!-- ![Streaming current date.](./.README/streaming.gif) -->
 
 
 
-![Streaming current date.](./.README/streaming.gif)
+
+
+
+
+
 
 [Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
 ligero muy popular entre developers. Es usado en muchísimas plataformas que
