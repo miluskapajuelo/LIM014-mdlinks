@@ -8,8 +8,8 @@ A way to find status and stadistical information of all links in a markdown file
 ## Table of Contents
 * [Goals and Philosofy](#Goals-and-Philosofy)
 * [Documentation](#Documentation)
-    * [Intallation](#Intallation)
-    * [Usage](#Intallation)
+    * [Intallation](#Installation)
+    * [Usage](#Usage)
     * [Options](#Options)
     * [Flowchart](#Flowchart)
     * [Technical documentation of the library.](#Technical-documentation-of-the-library.)
@@ -29,7 +29,7 @@ However .md files have a detail, some of these redirect you to pages that no lon
 
 It is a library that allows you to identify the links of a Markdown file
 
-**`mdLinks`** should ease the process of
+**`mdLinks`** should ease the process of:
 
 - providing basic information about links in .md files
 - providing stadistical information about links in .md files
@@ -39,9 +39,6 @@ It is a library that allows you to identify the links of a Markdown file
 ## Documentation
 
 ### Installation
-
-All you need to do is position yourself in the folder where you need to use the library and type or paste the following command 
-
 
 You can install directly from GitHub with the command:
 
@@ -55,13 +52,14 @@ If you want to implement globally. It can be installed via:
 npm install -g miluskapajuelo/LIM014-mdlinks
 ```
 
-
 This module includes executable and an interface that we can import with require to use it programmatically.
 
 
 > **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
 
-### API
+### Usage
+
+#### API
 
 The module must be able to import into other Node.js scripts and must offer the following interface:
 
@@ -89,7 +87,7 @@ text: Text that appeared within the link (<a>).
 file: Path of the file where the link was found.
 ~~~
 
-### CLI (Command Line Interface)
+#### CLI (Command Line Interface)
 
 1. First of all write on shell **mdLinks**
 2. Enter your absolute/relative path
@@ -103,20 +101,13 @@ file: Path of the file where the link was found.
 
 
 
-#### Options
+### Options
 
-##### Basic
+#### Basic
 
-```shell
-    --basic
-```
-
-    The default behavior should not validate if the URLs respond ok or not, it should only identify the markdown file (from the path it receives as an argument), analyze the Markdown file and print the links it finds, along with the path of the file where it appears and the text inside the link (truncated to 50 characters).
+The default behavior should not validate if the URLs respond ok or not, it should only identify the markdown file (from the path it receives as an argument), analyze the Markdown file and print the links it finds, along with the path of the file where it appears and the text inside the link (truncated to 50 characters).
 
 ```shell
-href: www.abc.com.pe ,text: abc ,file: src/abc.md
-href: www.xyz.com.pe ,text: xyz ,file: src/
-
 file: href: ./some/example.md http://algo.com/2/3/ Link a algo
 href: ./some/example.md https://otra-cosa.net/algun-doc.html algún doc
 href: ./some/example.md http://google.com/ Google
@@ -125,13 +116,10 @@ href: ./some/example.md http://google.com/ Google
 ![Basic](./img/basic.gif)
 
 
-##### Validate
+#### Validate
 
-```shell
-    --validate
-```
+If we pass the --validate option, the module must make an HTTP request to find out if the link works or not. If the link results in a redirect to a URL that responds ok, then we will treat the link as ok.
 
-    If we pass the --validate option, the module must make an HTTP request to find out if the link works or not. If the link results in a redirect to a URL that responds ok, then we will treat the link as ok.
 
 ```shell
 href: ./some/example.md http://algo.com/2/3/ ok 200 Link a algo
@@ -141,59 +129,48 @@ href: ./some/example.md http://google.com/ ok 301 Google
 
 ![Validate](./img/validate.gif)
 
-##### Stats
+#### Stats
 
-```shell
-    --stats
-```
+If we pass the --stats option, the output will be a text with basic statistics about the links.
 
-   If we pass the --stats option, the output will be a text with basic statistics about the links.
-
-```shell
 Total: 3
 Unique: 3
-```
+
 
 ![Stats](./img/stats.gif)
 
-##### Validate & Stats
+#### Validate & Stats
 
 
-```shell
-    --stats
-```
+We can also combine --stats and --validate to get statistics that need from the validation results.
 
-   We can also combine --stats and --validate to get statistics that need from the validation results.
-
-```shell
 Total: 3
 Unique: 3
 Broken: 1
-```
+
 
 ![ValidateStats](./img/validateStats.gif)
 
 
-## Flowchart
+### Flowchart
 
-### Flowchart API
+#### Flowchart API
 
 <a href="https://ibb.co/fM8wvdW"><img src="https://i.ibb.co/y0hjSFC/MDLINKS-API.png" alt="MDLINKS-API" border="0"></a>
 
-### Flowchart CLI
+#### Flowchart CLI
 
 <a href="https://ibb.co/M1Vgy3v"><img src="https://i.ibb.co/5j81Xf0/MDLINKS-CLI.png" alt="MDLINKS-CLI" border="0"></a>
 
 
-## Technical documentation of the library
+### Technical documentation of the library
 
-| Lenguaje   | Ejecución  | Dependencias y modulos NPM  | Testing  | Otros                 |
-|------------|------------|-----------------------------|----------|-----------------------|
-| JavaScript | Node.js    |  Inquirer                   | Jest     | RegEX                 |
-| common.js  |            |  node-fetch                 |          | Linea de comando CLI  |
-|            |            |  Table                      |          |                       |
+| Lenguaje   | Ejecución  | Dependencias y modulos NPM  | Testing    | Otros        |
+|------------|------------|-----------------------------|------------|--------------|
+| JavaScript | Node.js    |  Inquirer,node-fetch, Table | Jest, mock | RegEX, CLI   |
 
-## Test
+
+### Test
 
 | File      | % Stmts   |  % Branch  | % Funcs  | % Lines  |    
 |-----------|-----------|------------|----------|----------|
@@ -201,6 +178,5 @@ Broken: 1
 
 
 # Author
-[![GitHub](https://https://github.com/miluskapajuelo/)](Jhoselyn Miluska Pajuelo Villanueva)
+[[Jhoselyn Miluska Pajuelo Villanueva](https://https://github.com/miluskapajuelo/)]
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)]https://www.buymeacoffee.com/miluskapajuelo
