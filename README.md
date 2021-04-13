@@ -12,7 +12,7 @@ A way to find status and stadistical information of all links in a markdown file
     * [Usage](#Usage)
     * [Options](#Options)
     * [Flowchart](#Flowchart)
-    * [Technical documentation of the library.](#Technical-documentation-of-the-library.)
+    * [Technical documentation of the library.](#Technical-documentation-of-the-library)
     * [Test](#Test)
     
 
@@ -103,7 +103,7 @@ file: Path of the file where the link was found.
 
 ### Options
 
-#### Basic
+#### --Basic
 
 The default behavior should not validate if the URLs respond ok or not, it should only identify the markdown file (from the path it receives as an argument), analyze the Markdown file and print the links it finds, along with the path of the file where it appears and the text inside the link (truncated to 50 characters).
 
@@ -116,7 +116,7 @@ href: ./some/example.md http://google.com/ Google
 ![Basic](./img/basic.gif)
 
 
-#### Validate
+#### --Validate
 
 If we pass the --validate option, the module must make an HTTP request to find out if the link works or not. If the link results in a redirect to a URL that responds ok, then we will treat the link as ok.
 
@@ -129,7 +129,7 @@ href: ./some/example.md http://google.com/ ok 301 Google
 
 ![Validate](./img/validate.gif)
 
-#### Stats
+#### --Stats
 
 If we pass the --stats option, the output will be a text with basic statistics about the links.
 
@@ -139,7 +139,7 @@ Unique: 3
 
 ![Stats](./img/stats.gif)
 
-#### Validate & Stats
+#### --Validate & Stats
 
 
 We can also combine --stats and --validate to get statistics that need from the validation results.
