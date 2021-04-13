@@ -54,8 +54,8 @@ npm install -g miluskapajuelo/LIM014-mdlinks
 
 This module includes executable and an interface that we can import with require to use it programmatically.
 
+**`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
 
-> **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
 
 ### Usage
 
