@@ -33,10 +33,10 @@ It is a library that allows you to identify the links of a Markdown file
 
 **`mdLinks`** should ease the process of
 
-* providing basic information about links in .md files
-* providing stadistical information about links in .md files
-* validating links 
-* parsing input
+- providing basic information about links in .md files
+- providing stadistical information about links in .md files
+- validating links 
+- parsing input
 
 ## Documentation
 
@@ -44,9 +44,12 @@ It is a library that allows you to identify the links of a Markdown file
 
 All you need to do is position yourself in the folder where you need to use the library and type or paste the following command 
 
+
 ```shell
 npm install -g miluskapajuelo/LIM014-mdlinks
 ```
+
+
 
 > **Note:** **`mdLinks`** works if you already have nodejs installed and therefore npm as well, which is installed together with node.
 
@@ -54,17 +57,23 @@ npm install -g miluskapajuelo/LIM014-mdlinks
 
 The module must be able to import into other Node.js scripts and must offer the following interface:
 
-*function **mdLinks***
-**Enter a path:** Path
-**Choose an option:** Options
 
-*Arguments*
+###### Function
+~~~
+function __mdLinks__
+  Enter a path: __src/abc.md__
+  Choose an option:  __Options__
+~~~
+
+###### Arguments
+~~~
 **path:** Absolute or relative path to the file or directory.
 **options:** An object with only the following property:
 **validate:** Boolean that determines if you want to validate the links found.
+~~~
 
-
-*Return value*
+###### Return value
+~~~
 The function must return a (Promise) that resolves to an (Array) of (Objects), where each object represents a link and contains the following properties:
 
 **href:** URL found.
@@ -77,11 +86,13 @@ The function must return a (Promise) that resolves to an (Array) of (Objects), w
 2. Enter your absolute/relative path
 3. Choose the option of your preference 
 
-![help, need instructions.](./src/img/help.gif)
+![help, need instructions.](C:\Users\milus\Desktop\Repositorios\LIM014-mdlinks\img\validate.gif)
 
 
 
 > if you need more information select the last option **Help, need instructions :)**
+
+
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/gSTNfdb/helping.png" alt="helping" border="0"></a>
 
