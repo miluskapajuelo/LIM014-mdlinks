@@ -87,7 +87,7 @@ file: Path of the file where the link was found.
 2. Enter your absolute/relative path
 3. Choose the option of your preference 
 
-<a href="https://ibb.co/M1jSVRZ"><img src="https://i.ibb.co/C9X87nm/validate.gif" alt="validate" border="0"></a>
+<a><img src="C:\Users\milus\Desktop\Repositorios\LIM014-mdlinks\img\validate.gif" alt="validate"></a>
 
 > if you need more information select the last option **Help, need instructions :)**
 
