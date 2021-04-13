@@ -86,9 +86,7 @@ The function must return a (Promise) that resolves to an (Array) of (Objects), w
 2. Enter your absolute/relative path
 3. Choose the option of your preference 
 
-![help, need instructions.](C:\Users\milus\Desktop\Repositorios\LIM014-mdlinks\img\validate.gif)
-
-
+<a href="https://ibb.co/M1jSVRZ"><img src="https://i.ibb.co/C9X87nm/validate.gif" alt="validate" border="0"></a>
 
 > if you need more information select the last option **Help, need instructions :)**
 
