@@ -19,6 +19,9 @@
   "bin": {
     "mdLinks": "src/cli.js"
   },
+  "engines": {
+    "node": ">=10"
+  },
   "keywords": [
     "markdown",
     "md",
