@@ -6,23 +6,23 @@ const chalk = require("chalk");
 const path = require("path")
 
 const config = {
-  /* singleLine: true, */
+  singleLine: true,
   columns: {
     0: {
-      width: 33,
+      width: 30,
 
     },
     1: {
-      width: 31
-    },
-    2: {
       width: 30
     },
+    2: {
+      width: 17
+    },
     3: {
-      width: 20
+      width: 17
     },
     4: {
-      width: 28
+      width: 17
     }
 }
   }
@@ -112,8 +112,9 @@ inquirer
             "Text: " + textLink,
           ]});
           console.log(table(finalArray, config));
-        });
+        })
+        .catch((err) => console.log(chalk.inverse(err)));
       }
     }
   })
-  .catch(err => console.log(err))
+  .catch(err => console.log("err"))
