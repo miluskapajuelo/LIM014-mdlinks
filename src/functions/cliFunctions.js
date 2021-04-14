@@ -22,7 +22,6 @@ const resumeInfo = (info, number) => {
   }
 };
 
-
 module.exports = {
   unique,
   broke,

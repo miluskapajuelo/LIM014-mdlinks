@@ -40,6 +40,9 @@ function mdLinks(path, options) {
   });
 }
 
+
+/* mdLinks("../test", {validate:false}).then(res=>(console.log(res))) */
+
 module.exports = {
   mdLinks,
 };

@@ -37,7 +37,6 @@ const messageHelp= [
     "option: --stats & validate",
     "Shows statistical information. [Total links, Unique links, Broken links]",
   ],
-  ["retype the command md links and choose the option you prefer" ]
 ]
 
 var inquirer = require("inquirer");
@@ -120,4 +119,3 @@ inquirer
       }
     }
   })
-  .catch(err => console.log("err"))

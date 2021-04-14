@@ -1,6 +1,6 @@
 {
   "name": "@miluskapajuelov/mdlinks-014",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Herramienta que lee y analiza archivos Markdown para verficar los links contenidos y reportar estadísticas",
   "main": "index.js",
   "directories": {
