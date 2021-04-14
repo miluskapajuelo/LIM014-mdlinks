@@ -37,8 +37,8 @@ function findePaths(path) {
     }
 
 function findLinks(paths) {
-  let objetsB;
-  let objetsA;
+  let objectFromOneLink;
+  let objectFromSomeLink;
   let propertiesLink = [];
 
   paths.forEach((path) => {
@@ -54,12 +54,12 @@ function findLinks(paths) {
         
         let text = linkPlusTag.match(regexLinkText).join().slice(1, -1)
 
-        objetsA = {
+        objectFromOneLink = {
           'href': href,
           'text': text,
           'file': path,
         };
-        propertiesLink.push(objetsA);
+        propertiesLink.push(objectFromOneLink);
       }
       if (count > 1) {
         linkPlusTag.forEach((link) => {
@@ -68,12 +68,12 @@ function findLinks(paths) {
 
           let text = link.match(regexLinkText).join().slice(1, -1);
  
-          objetsB = {
+          objectFromSomeLink = {
             'href': href,
             'text': text,
             'file': path,
           };
-          propertiesLink.push(objetsB);
+          propertiesLink.push(objectFromSomeLink);
         });
       }
     }

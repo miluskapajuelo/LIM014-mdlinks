@@ -5,6 +5,7 @@ const { resumeInfo } = require("./functions/cliFunctions");
 const chalk = require("chalk");
 const path = require("path")
 
+//config table
 const config = {
   singleLine: true,
   columns: {
@@ -27,6 +28,7 @@ const config = {
 }
   }
 
+
 const messageHelp= [
   ["option: --basic", "Shows basic information about your files"],
   ["option: --validate", "Shows status information about links e.g OK, FAIL status"],
@@ -35,6 +37,7 @@ const messageHelp= [
     "option: --stats & validate",
     "Shows statistical information. [Total links, Unique links, Broken links]",
   ],
+  ["retype the command md links and choose the option you prefer" ]
 ]
 
 var inquirer = require("inquirer");
@@ -69,8 +72,8 @@ inquirer
         let optionChoosen = { validate: true, stats: true };
         mdLinks(route, optionChoosen)
           .then((res) => {
-            let finalArray = resumeInfo(res, 3);
-            console.log(table(finalArray, config));
+            let validateStats = resumeInfo(res, 3);
+            console.log(table(validateStats, config));
           }) 
           .catch((err) => console.log(chalk.inverse(err)));
       } else if (option == "--validate") {

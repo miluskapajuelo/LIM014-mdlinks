@@ -1,6 +1,6 @@
 {
-  "name": "miluskapajuelo",
-  "version": "1.0.0",
+  "name": "@miluskapajuelov/mdlinks-014",
+  "version": "1.1.0",
   "description": "Herramienta que lee y analiza archivos Markdown para verficar los links contenidos y reportar estadísticas",
   "main": "index.js",
   "directories": {
@@ -14,13 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/miluskapajuelo/LIM014-mdlinks.git"
   },
-  "author": "miluskapajuelo <miluskapajuelo@gmail.com>",
+  "author": "miluskapajuelo <miluskapajuelo@gmail.com> (https://www.linkedin.com/in/jhoselynpajuelovillanueva/)",
   "license": "MIT",
   "bin": {
     "mdLinks": "src/cli.js"
-  },
-  "engines": {
-    "node": ">=10"
   },
   "keywords": [
     "markdown",
@@ -53,7 +50,8 @@
     "promise"
   ],
   "bugs": {
-    "url": "https://github.com/miluskapajuelo/LIM014-mdlinks/issues"
+    "url": "https://github.com/miluskapajuelo/LIM014-mdlinks/issues",
+    "email": "miluskapajuelo@gmail.com"
   },
   "homepage": "https://github.com/miluskapajuelo/LIM014-mdlinks#readme",
   "dependencies": {

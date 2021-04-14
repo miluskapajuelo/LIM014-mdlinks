@@ -43,10 +43,8 @@ It is a library that allows you to identify the links of a Markdown file
 
 * Install by npm:
 
-You can install directly from GitHub with the command:
-
 ```shell
-npm i mdLinks-014
+npm i miluskapajuelo-mdlinks-014
 ```
 * Install directly from GitHub:
 
