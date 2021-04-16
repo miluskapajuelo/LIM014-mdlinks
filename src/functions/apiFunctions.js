@@ -81,16 +81,6 @@ function findLinks(paths) {
   return propertiesLink;
 }
 
-function readLinks (b){
-  console.log(b)
-}
-
-function itExisti (a, callback) {
-  let b = a + 40;
-  callback(b)
-}
-
-itExisti(3, readLinks)
 
 //Export functions
 module.exports = {
