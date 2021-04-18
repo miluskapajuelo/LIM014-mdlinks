@@ -41,7 +41,7 @@ function mdLinks(path, options) {
 }
 
 
-/* mdLinks("../test", {validate:true}).then(res=>(console.log(res))).catch(err => console.error(err)) */
+mdLinks("../test", {validate:false}).then(res=>(console.log(res))).catch(err => console.error(err))
 
 module.exports = {
   mdLinks,
